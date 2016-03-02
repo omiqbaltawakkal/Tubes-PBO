@@ -10,5 +10,11 @@ package tubespbo;
  * @author user
  */
 public class Dosen extends Orang{
+    private long nip;
+    private KelompokTA kelTA;
     
+    public KelompokTA getKelompok(){
+        return kelTA;
+    }
+    //setter, getter, display
 }

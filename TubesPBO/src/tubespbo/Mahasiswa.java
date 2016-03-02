@@ -10,5 +10,16 @@ package tubespbo;
  * @author user
  */
 public class Mahasiswa extends Orang{
+    private long nim;
+    private TugasAkhir tugasakhir;
+    private String judul;
+    //private String status;
     
+    public void createTA(String judul){
+        
+    }
+    public TugasAkhir getTA(){
+        
+    }
+    //setter, getter, display
 }

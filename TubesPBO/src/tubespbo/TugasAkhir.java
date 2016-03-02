@@ -10,5 +10,13 @@ package tubespbo;
  * @author user
  */
 public class TugasAkhir {
+    private Dosen pembimbing;
+    private String judul;
+    private String KK;
+    private int posisi;
     
+    public void setPembimbing(Dosen pembimbing, int posisi){
+        //set array disini
+    }
+    //setter, getter, display
 }

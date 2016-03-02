@@ -10,5 +10,20 @@ package tubespbo;
  * @author user
  */
 public class KelompokTA {
+    private final String topik;
+    private Mahasiswa[] anggota;
+    private final int jumlah;
     
+    public KelompokTA(String topik, int jumlah){
+        this.topik=topik;
+        this.jumlah=jumlah;
+        //Mahasiswa[jumlah] anggota= new Mahasiswa();
+    }
+    public void addAnggota(Mahasiswa m){
+        
+    }
+    public void removeAnggota(Mahasiswa m){
+        
+    }
+    //setter, getter, display
 }
