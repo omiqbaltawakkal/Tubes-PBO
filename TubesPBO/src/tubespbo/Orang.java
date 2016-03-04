@@ -14,10 +14,8 @@ public abstract class Orang {
 	private int umur;
 	private String jenis; 
 	
-	public Orang(String nama, int umur, String jenis){
+	public Orang(String nama){
 		this.nama=nama;
-		this.umur=umur;
-		this.jenis=jenis;
 	}
 	public void setNama(String nama){
 		this.nama=nama;
