@@ -10,16 +10,20 @@ package tubespbo;
  * @author user
  */
 public class Mahasiswa extends Orang{
-    private long nim;
+    private final long nim;
     private TugasAkhir tugasakhir;
     private String judul;
     //private String status;
     
+    public Mahasiswa(String nama, long nim){
+        super(nama);
+        this.nim=nim;
+    }
     public void createTA(String judul){
         
     }
     public TugasAkhir getTA(){
-        
+        return tugasakhir;
     }
     //setter, getter, display
 }

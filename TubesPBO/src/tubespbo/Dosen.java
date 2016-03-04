@@ -13,6 +13,9 @@ public class Dosen extends Orang{
     private long nip;
     private KelompokTA kelTA;
     
+    public Dosen(String nama){
+        super(nama);
+    }
     public KelompokTA getKelompok(){
         return kelTA;
     }
