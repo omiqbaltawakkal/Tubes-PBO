@@ -1,7 +1,7 @@
 package tubes.pbo;
 
 public class KelompokTA{
-	private String topik;
+	public String topik;
 	private Mahasiswa[] anggota;
 	private int numAnggota;
         
