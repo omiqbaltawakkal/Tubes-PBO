@@ -15,7 +15,7 @@ public abstract class Orang{
 		return nama;
 	}
 	public void setJenisKelamin(String JenisKelamin){
-		if (JenisKelamin =="Pria" || JenisKelamin =="Wanita")
+		if (JenisKelamin =="Pria" || JenisKelamin =="Perempuan")
 			this.JenisKelamin=JenisKelamin;
 		else
 			this.JenisKelamin=null;

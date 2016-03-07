@@ -16,6 +16,8 @@ public class TubesPBO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Dosen MKS = new Dosen("Mira Kania", "Perempuan", "D01", "MKS");
+        MKS.deskripsi();
     }
     
 }
