@@ -26,12 +26,31 @@ public class Dosen extends Orang{
 		this.topikTA = new KelompokTA[n];
 	}
 	
+        public void deleteKelompokTA(int n){
+            topikTA[n] = null;
+        }
+        
+        public KelompokTA getKelompokByIndeks(int indeks){
+            return topikTA[indeks];
+        }
+        
+        public KelompokTA getKelompokByTopik(String topik){
+            int indeks=0;
+            for (int i=0; i<topikTA.length;i++){
+                if(topikTA[i].topik.equalsIgnoreCase(topik)){
+                    indeks = i;
+                }
+            }
+            return topikTA[indeks];
+        }
+        
 	public void deskripsi(){
             System.out.println("Info dosen");
             System.out.println("Nama: "+getNama());
             System.out.println("NIP: "+getNip());
             System.out.println("Kode Dosen: "+getKodeDosen());
-            System.out.println("Topik TA: ");
+            System.out.println("Topik TA by indeks: "+getKelompokByIndeks(1));
+            System.out.println("Topik TA by topik: "+getKelompokByTopik("e-learning"));
 	}
 	
 }

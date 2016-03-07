@@ -8,7 +8,6 @@ public class KelompokTA{
 	public KelompokTA(String topik ){
 	    this.topik = topik;
 	}
-	
         public void addAnggota(Mahasiswa m){
 		if(numAnggota<10){
                     anggota[numAnggota] = m;
