@@ -14,4 +14,19 @@ public class KelompokTA{
                     numAnggota++;
 		}
 	}
+        public void removeAnggota(int n){
+            anggota[n]=null;
+        }
+        public Mahasiswa getAnggotaByIndeks(int indeks){
+            return anggota[indeks];
+        }
+        public Mahasiswa getAnggotaByNim(String nim){
+            int numOfAnggota=0;
+            for (int i=0; i<anggota.length;i++){
+                if(anggota[i].topik.equalsIgnoreCase(topik)){
+                    numOfAnggota= i;
+                }
+            }
+            return anggota[numOfAnggota];
+        }
 }
