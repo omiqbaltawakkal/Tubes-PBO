@@ -9,13 +9,13 @@ package tubespbo;
  *
  * @author user
  */
-public abstract class Orang {
+public abstract class Orang{
 	private String nama;
-	private int umur;
-	private String jenis; 
+	private String JenisKelamin;
 	
-	public Orang(String nama){
+	public Orang(String nama, String JenisKelamin){
 		this.nama=nama;
+		setJenisKelamin(JenisKelamin);
 	}
 	public void setNama(String nama){
 		this.nama=nama;
@@ -23,16 +23,14 @@ public abstract class Orang {
 	public String getNama(){
 		return nama;
 	}
-	public void setUmur(int umur){
-		this.umur=umur;
+	public void setJenisKelamin(String JenisKelamin){
+		if (JenisKelamin =="Pria" || JenisKelamin =="Wanita")
+			this.JenisKelamin=JenisKelamin;
+		else
+			this.JenisKelamin=null;
 	}
-	public int getUmur(){
-		return umur;
+	public String getJenisKelamin(){
+		return JenisKelamin;
 	}
-	public void setJenis(String jenis){
-		this.jenis=jenis;
-	}
-	public String getJenis(){
-		return jenis;
-	}
+	public abstract void deskripsi();
 }
