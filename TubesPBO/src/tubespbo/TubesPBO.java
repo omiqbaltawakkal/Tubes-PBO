@@ -15,7 +15,10 @@ public class TubesPBO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Mahasiswa m1 = new Mahasiswa("a","Pria",123123);
+        Mahasiswa m2 = new Mahasiswa("b","Pria",123124);
+        Dosen d1 = new Dosen("c","Pria",123123,"C");
+        Dosen d2 = new Dosen("d","Pria",123121,"D");
     }
     
 }
