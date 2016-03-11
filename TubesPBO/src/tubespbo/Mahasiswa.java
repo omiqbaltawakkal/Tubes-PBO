@@ -16,33 +16,24 @@ public class Mahasiswa extends Orang{
     private int numOfTugasAkhir;
     private int numOfJudul;
     
-    
-    //private String status;
-    
-    public Mahasiswa(String nama, long nim){
-        super(nama);
+    public Mahasiswa(String nama, String jeniskelamin, long nim){
+        super(nama,jeniskelamin);
         this.nim=nim;
     }
-    public void createTA(String judul){
-        if(TugasAkhir.length>=numOfJudul) {
-            TugasAkhir[numOfJudul]=new TugasAkhir(judul);
+    public void createTA(String judul,String KK){
+        if(tugasakhir.length>=numOfJudul) {
+            tugasakhir[numOfJudul]=new TugasAkhir(judul,KK);
             numOfJudul++;
         }else System.out.println("error");
     }
     public void addTugasAkhir(TugasAkhir t){
-        if(numOfTugasAkhir<TugasAkhir.length){
-            TugasAkhir[numOfTugasAkhir]=t;
+        if(numOfTugasAkhir<tugasakhir.length){
+            tugasakhir[numOfTugasAkhir]=t;
             numOfTugasAkhir++;
-        }else System.Out.Println("error");
+        }else System.out.println("error");
     }
-    
-
-    /**
-     *
-     * @return
-     */
-    public TugasAkhir getTA(){
-        return tugasakhir;
+    public TugasAkhir getTA(int i){
+        return tugasakhir[i];
     }
     public void setJudul(String judul){
         this.judul=judul;
@@ -50,7 +41,12 @@ public class Mahasiswa extends Orang{
     public String getJudul(){
         return judul;
     }
-    public void display(){
+
+    /**
+     *
+     */
+    @Override
+    public void deskripsi(){
         System.out.println("Nama : "+super.getNama());
         System.out.println("Nim : "+nim);
         System.out.println("Judul : "+judul);

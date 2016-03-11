@@ -32,7 +32,7 @@ public class KelompokTA{
         public Mahasiswa getAnggotaByNim(String nim){
             int numOfAnggota=0;
             for (int i=0; i<anggota.length;i++){
-                if(anggota[i].topik.equalsIgnoreCase(topik)){
+                if(anggota[i].TugasAkhir.equalsIgnoreCase(topik)){
                     numOfAnggota= i;
                 }
             }

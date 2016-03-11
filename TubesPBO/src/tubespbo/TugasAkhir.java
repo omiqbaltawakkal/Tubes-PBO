@@ -11,16 +11,15 @@ package tubespbo;
  */
 
 public class TugasAkhir {
-    private Dosen pembimbing;
+    private Dosen[] pembimbing;
     private String judul;
     private String KK;
     private int posisi;
 
-    public TugasAkhir(String judul,String KK,int posisi){
+    public TugasAkhir(String judul,String KK){
         this.judul=judul;
         this.KK=KK;
-        this.posisi=posisi;
-        
+        pembimbing = new Dosen[2];
     }
     public void setPembimbing(Dosen pembimbing, int posisi){
         //set array disini
@@ -28,7 +27,7 @@ public class TugasAkhir {
     public void setKK(String KK){
         this.KK=KK;
     }
-    public void setPosisi(String posisi){
+    public void setPosisi(int posisi){
         this.posisi=posisi;
     }
     public String KK(){
@@ -38,7 +37,7 @@ public class TugasAkhir {
         return posisi;
     }
     public void display(){
-        System.out.println("Nama : "+super.getNama());
+        //System.out.println("Nama : "+super.getNama());
         System.out.println("Judul : "+judul);
         System.out.println("KK : "+KK);
         System.out.println("Posisi : "+posisi);
