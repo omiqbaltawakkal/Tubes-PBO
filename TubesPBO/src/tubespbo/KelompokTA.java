@@ -26,7 +26,7 @@ public class KelompokTA{
         public void removeAnggota(int n){
             anggota[n]=null;
         }
-        public Mahasiswa getAnggotaByIndeks(int indeks){
+        /*public Mahasiswa getAnggotaByIndeks(int indeks){
             return anggota[indeks];
         }
         public Mahasiswa getAnggotaByNim(String nim){
@@ -37,5 +37,5 @@ public class KelompokTA{
                 }
             }
             return anggota[numOfAnggota];
-        }
+        }*/
 }
