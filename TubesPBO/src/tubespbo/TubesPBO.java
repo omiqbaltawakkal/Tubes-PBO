@@ -19,6 +19,7 @@ public class TubesPBO {
         Mahasiswa m2 = new Mahasiswa("b","Pria",123124);
         Dosen d1 = new Dosen("c","Pria",123123,"C");
         Dosen d2 = new Dosen("d","Pria",123121,"D");
+        TugasAkhir t1 = new TugasAkhir("satu","icm");
     }
     
 }

@@ -12,20 +12,30 @@ package tubespbo;
 
 public class TugasAkhir {
     private Dosen[] pembimbing;
-    private String judul;
+    private final String judul;
     private String KK;
     private int posisi;
+    public int i;
 
     public TugasAkhir(String judul,String KK){
         this.judul=judul;
         this.KK=KK;
         pembimbing = new Dosen[2];
     }
-    public void setPembimbing(Dosen pembimbing, int posisi){
-        //set array disini
+    public void setPembimbing(Dosen baru, int posisi){
+        if(this.pembimbing[2] != null){
+            System.out.println("Pembimbing dari TA ini sudah full");
+        }
+        else{
+            setPosisi(posisi);
+            pembimbing[posisi]=baru;
+        }
     }
     public void setKK(String KK){
         this.KK=KK;
+    }
+    public Dosen getDosenPembimbing(int a){
+        return pembimbing[a];
     }
     public void setPosisi(int posisi){
         this.posisi=posisi;
@@ -33,7 +43,7 @@ public class TugasAkhir {
     public String KK(){
         return KK;
     }
-    public int posisi(){
+    public int getPosisi(){
         return posisi;
     }
     public void display(){

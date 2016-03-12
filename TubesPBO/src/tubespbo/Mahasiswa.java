@@ -20,12 +20,12 @@ public class Mahasiswa extends Orang{
         super(nama,jeniskelamin);
         this.nim=nim;
     }
-    public void createTA(String judul,String KK){
+    /*public void createTA(String judul,String KK){
         if(tugasakhir.length>=numOfJudul) {
             tugasakhir[numOfJudul]=new TugasAkhir(judul,KK);
             numOfJudul++;
         }else System.out.println("error");
-    }
+    }*/
     public void addTugasAkhir(TugasAkhir t){
         if(numOfTugasAkhir<tugasakhir.length){
             tugasakhir[numOfTugasAkhir]=t;
