@@ -13,19 +13,19 @@ public class Mahasiswa extends Orang{
     private long nim;
     private TugasAkhir[] tugasakhir;
     private int numOfTugasAkhir;
-    private int numOfJudul;
     
     public Mahasiswa(String nama, String jeniskelamin, long nim){
         super(nama,jeniskelamin);
         this.nim=nim;
+        tugasakhir = new TugasAkhir[1];
     }
-    public void createTA(String judul,String KK){
+    /*public void createTA(String judul,String KK){
         if(tugasakhir.length>=numOfJudul) {
             tugasakhir[numOfJudul]=new TugasAkhir(judul,KK);
             numOfJudul++;
         }else System.out.println("error");
-    }
-    public void addTugasAkhir(TugasAkhir t){
+    }*/
+    public void createTugasAkhir(TugasAkhir t){
         if(numOfTugasAkhir<tugasakhir.length){
             tugasakhir[numOfTugasAkhir]=t;
             numOfTugasAkhir++;

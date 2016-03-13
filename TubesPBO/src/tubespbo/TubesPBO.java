@@ -31,6 +31,8 @@ public class TubesPBO {
         KelompokTA k1 = new KelompokTA("icm",3);
         KelompokTA k2 = new KelompokTA("side",2);
         
+        m1.createTugasAkhir(t1);
+        
         k1.addAnggota(m1);
         k1.addAnggota(m3);
         
