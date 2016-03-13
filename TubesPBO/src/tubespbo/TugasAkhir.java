@@ -29,6 +29,7 @@ public class TugasAkhir {
         else{
             setPosisi(posisi);
             pembimbing[posisi]=baru;
+            i++;
         }
     }
     public void setKK(String KK){

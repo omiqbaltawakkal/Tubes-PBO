@@ -13,12 +13,16 @@ public class KelompokTA{
 	public String topik;
 	private Mahasiswa[] anggota;
 	private int numAnggota;
+        public int max;
         
-	public KelompokTA(String topik ){
+	public KelompokTA(String topik, int num){
 	    this.topik = topik;
+            anggota = new Mahasiswa[num];
+            //numAnggota=num;
+            max=num;
 	}
         public void addAnggota(Mahasiswa m){
-		if(numAnggota<10){
+		if(numAnggota<max){
                     anggota[numAnggota] = m;
                     numAnggota++;
 		}
@@ -26,9 +30,9 @@ public class KelompokTA{
         public void removeAnggota(int n){
             anggota[n]=null;
         }
-        /*public Mahasiswa getAnggotaByIndeks(int indeks){
+        public Mahasiswa getAnggotaByIndeks(int indeks){
             return anggota[indeks];
-        }
+        }/*
         public Mahasiswa getAnggotaByNim(String nim){
             int numOfAnggota=0;
             for (int i=0; i<anggota.length;i++){
