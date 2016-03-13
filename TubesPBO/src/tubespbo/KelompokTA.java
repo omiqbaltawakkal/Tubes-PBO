@@ -32,14 +32,14 @@ public class KelompokTA{
         }
         public Mahasiswa getAnggotaByIndeks(int indeks){
             return anggota[indeks];
-        }/*
-        public Mahasiswa getAnggotaByNim(String nim){
+        }
+        public Mahasiswa getAnggotaByNim(long nim){
             int numOfAnggota=0;
             for (int i=0; i<anggota.length;i++){
-                if(anggota[i].TugasAkhir.equalsIgnoreCase(topik)){
+                if(anggota[i].getNim()==nim){
                     numOfAnggota= i;
                 }
             }
             return anggota[numOfAnggota];
-        }*/
+        }
 }

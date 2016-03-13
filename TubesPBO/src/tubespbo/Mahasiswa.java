@@ -10,7 +10,7 @@ package tubespbo;
  * @author user
  */
 public class Mahasiswa extends Orang{
-    private final long nim;
+    private long nim;
     private TugasAkhir[] tugasakhir;
     private String judul;
     private int numOfTugasAkhir;
@@ -20,12 +20,12 @@ public class Mahasiswa extends Orang{
         super(nama,jeniskelamin);
         this.nim=nim;
     }
-    /*public void createTA(String judul,String KK){
+    public void createTA(String judul,String KK){
         if(tugasakhir.length>=numOfJudul) {
             tugasakhir[numOfJudul]=new TugasAkhir(judul,KK);
             numOfJudul++;
         }else System.out.println("error");
-    }*/
+    }
     public void addTugasAkhir(TugasAkhir t){
         if(numOfTugasAkhir<tugasakhir.length){
             tugasakhir[numOfTugasAkhir]=t;
@@ -35,11 +35,11 @@ public class Mahasiswa extends Orang{
     public TugasAkhir getTA(int i){
         return tugasakhir[i];
     }
-    public void setJudul(String judul){
-        this.judul=judul;
+    public void setNim(long nim) {
+        this.nim = nim;
     }
-    public String getJudul(){
-        return judul;
+    public long getNim() {
+        return nim;
     }
 
     /**
@@ -48,8 +48,6 @@ public class Mahasiswa extends Orang{
     @Override
     public void deskripsi(){
         System.out.println("Nama : "+super.getNama());
-        System.out.println("Nim : "+nim);
-        System.out.println("Judul : "+judul);
-        
+        System.out.println("Nim : "+getNim());
     }
 }

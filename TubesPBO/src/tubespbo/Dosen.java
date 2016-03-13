@@ -18,6 +18,7 @@ public class Dosen extends Orang{
 		super(nama,JenisKelamin);
 		this.nip=nip;
 		this.kodedosen=kodedosen;
+                topikTA = new KelompokTA[2];
 	}
 	public void setNip(long nip){
 		this.nip=nip;
@@ -31,10 +32,12 @@ public class Dosen extends Orang{
 	public String getKodeDosen(){
                 return kodedosen;
         }
-	public void createKelompokTA(int n){
-		this.topikTA = new KelompokTA[n];
+	public void createKelompokTA(KelompokTA kel){
+            int i=0;
+                if (topikTA.length<2){
+                    topikTA[i] = kel;
+                }
 	}
-	
         public void deleteKelompokTA(int n){
             topikTA[n] = null;
         }
@@ -62,8 +65,8 @@ public class Dosen extends Orang{
             System.out.println("Nama: "+getNama());
             System.out.println("NIP: "+getNip());
             System.out.println("Kode Dosen: "+getKodeDosen());
-            System.out.println("Topik TA by indeks: "+getKelompokByIndeks(1));
-            System.out.println("Topik TA by topik: "+getKelompokByTopik("e-learning"));
+            //System.out.println("Topik TA by indeks: "+getKelompokByIndeks());
+            //System.out.println("Topik TA by topik: "+getKelompokByTopik("e-learning"));
 	}
 	
 }
