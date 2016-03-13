@@ -28,10 +28,10 @@ public class TubesPBO {
         TugasAkhir t1 = new TugasAkhir("satu","icm");
         TugasAkhir t2 = new TugasAkhir("dua","side");
         
-        KelompokTA k1 = new KelompokTA("satu");
-        KelompokTA k2 = new KelompokTA("side");
+        KelompokTA k1 = new KelompokTA("satu",3);
+        KelompokTA k2 = new KelompokTA("side",2);
         
-        k1.addAnggota()
+        k1.addAnggota(m1);
     }
     
 }
