@@ -12,7 +12,6 @@ package tubespbo;
 public class Mahasiswa extends Orang{
     private long nim;
     private TugasAkhir[] tugasakhir;
-    private String judul;
     private int numOfTugasAkhir;
     private int numOfJudul;
     
@@ -47,6 +46,7 @@ public class Mahasiswa extends Orang{
      */
     @Override
     public void deskripsi(){
+        System.out.println("Info Mahasiswa");
         System.out.println("Nama : "+super.getNama());
         System.out.println("Nim : "+getNim());
     }

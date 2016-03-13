@@ -44,6 +44,7 @@ public class TubesPBO {
         m2.deskripsi();
         
         d1.deskripsi();
+        d1.displayKelompok();
         d2.deskripsi();
         
         

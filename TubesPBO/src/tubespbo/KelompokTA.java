@@ -10,36 +10,45 @@ package tubespbo;
  * @author user
  */
 public class KelompokTA{
-	public String topik;
-	private Mahasiswa[] anggota;
-	private int numAnggota;
-        public int max;
+    public String topik;
+    private Mahasiswa[] anggota;
+    private int numAnggota;
+    public int max;
         
-	public KelompokTA(String topik, int num){
-	    this.topik = topik;
-            anggota = new Mahasiswa[num];
-            //numAnggota=num;
-            max=num;
-	}
-        public void addAnggota(Mahasiswa m){
-		if(numAnggota<max){
-                    anggota[numAnggota] = m;
-                    numAnggota++;
-		}
-	}
-        public void removeAnggota(int n){
-            anggota[n]=null;
-        }
-        public Mahasiswa getAnggotaByIndeks(int indeks){
-            return anggota[indeks];
-        }
-        public Mahasiswa getAnggotaByNim(long nim){
-            int numOfAnggota=0;
-            for (int i=0; i<anggota.length;i++){
-                if(anggota[i].getNim()==nim){
-                    numOfAnggota= i;
-                }
+    public KelompokTA(String topik, int num){
+        this.topik = topik;
+        anggota = new Mahasiswa[num];
+        //numAnggota=num;
+        max=num;
+    }
+    public void addAnggota(Mahasiswa m){
+            if(numAnggota<max){
+                anggota[numAnggota] = m;
+                numAnggota++;
             }
-            return anggota[numOfAnggota];
+    }
+    public void removeAnggota(int n){
+        anggota[n]=null;
+    }
+
+    public String getTopik() {
+        return topik;
+    }
+
+    public void setTopik(String topik) {
+        this.topik = topik;
+    }
+
+    public Mahasiswa getAnggotaByIndeks(int indeks){
+        return anggota[indeks];
+    }
+    public Mahasiswa getAnggotaByNim(long nim){
+        int numOfAnggota=0;
+        for (int i=0; i<anggota.length;i++){
+            if(anggota[i].getNim()==nim){
+                numOfAnggota= i;
+            }
         }
+        return anggota[numOfAnggota];
+    }
 }

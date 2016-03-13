@@ -55,7 +55,13 @@ public class Dosen extends Orang{
             }
             return topikTA[indeks];
         }
-        
+        public void displayKelompok(){
+            System.out.println("Data");
+            for (int k=0;k<topikTA.length;k++){
+                System.out.println("Nama: "+getKelompokByIndeks(k).getTopik());
+                System.out.println("");
+            }
+        }
     /**
      *
      */
