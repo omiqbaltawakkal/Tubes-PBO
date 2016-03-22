@@ -38,4 +38,7 @@ public class Aplikasi {
             }
     }
     }
+    public void menuAdd(int pil){
+        
+    }
 }
