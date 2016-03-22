@@ -32,10 +32,9 @@ public class Aplikasi {
         }
     }
     public Mahasiswa getMahasiswa(long nim){
-        int c = 0;
         for (int i=0;i<50;i++){
             if (daftarMahasiswa[i].getNim() == nim){
-                return daftarMahasiswa[c];
+                return daftarMahasiswa[i];
             }
     }
     }
