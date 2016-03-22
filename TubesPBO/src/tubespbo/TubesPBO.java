@@ -15,15 +15,15 @@ public class TubesPBO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Mahasiswa m1 = new Mahasiswa("a","Pria",123123);
-        Mahasiswa m2 = new Mahasiswa("b","Pria",123124);
-        Mahasiswa m3 = new Mahasiswa("f","Wanita",123122);
-        Mahasiswa m4 = new Mahasiswa("g","Wanita",123124);
+        Mahasiswa m1 = new Mahasiswa("adi","Pria",123123);
+        Mahasiswa m2 = new Mahasiswa("budi","Pria",123124);
+        Mahasiswa m3 = new Mahasiswa("friska","Wanita",123122);
+        Mahasiswa m4 = new Mahasiswa("gery","Wanita",123124);
         
-        Dosen d1 = new Dosen("c","Pria",123123,"C");
-        Dosen d2 = new Dosen("d","Pria",123121,"D");
-        Dosen d3 = new Dosen("b","Wanita",123126,"B");
-        Dosen d4 = new Dosen("r","Wanita",123125,"R");
+        Dosen d1 = new Dosen("carly","Pria",123123,"C");
+        Dosen d2 = new Dosen("dodi","Pria",123121,"D");
+        Dosen d3 = new Dosen("bista","Wanita",123126,"B");
+        Dosen d4 = new Dosen("rudi","Wanita",123125,"R");
         
         TugasAkhir t1 = new TugasAkhir("satu","icm");
         TugasAkhir t2 = new TugasAkhir("dua","side");
@@ -46,8 +46,6 @@ public class TubesPBO {
         m2.deskripsi();
         
         d1.deskripsi();
-        //d1.displayKelompok();
-        //d2.deskripsi();
         
         
     }
