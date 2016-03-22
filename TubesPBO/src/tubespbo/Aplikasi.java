@@ -36,9 +36,35 @@ public class Aplikasi {
             if (daftarMahasiswa[i].getNim() == nim){
                 return daftarMahasiswa[i];
             }
+        }
     }
+    public void deleteMahasiswa(long nim){
+        for (int i=0;i<50;i++){
+            if (daftarMahasiswa[i].getNim() == nim){
+                daftarMahasiswa[i]=null;
+            }
+        }
     }
-    public void menuAdd(int pil){
-        
+    public Dosen getDaftarDosen(long nip) {
+        for (int i=0;i<50;i++){
+            if (daftarDosen[i].getNip() == nip){
+                return daftarDosen[i];
+            }
+        }
+    }
+     public void deleteDosen(long nip){
+        for (int i=0;i<50;i++){
+            if (daftarDosen[i].getNip() == nip){
+                daftarDosen[i]=null;
+            }
+        }
+    }
+    public void menuDaftar(int pil){
+        if (pil == 1){
+            
+        }
+    }
+    public void menuDelete(int pil){
+    
     }
 }
