@@ -12,7 +12,7 @@ package tubespbo;
 
 public class TugasAkhir {
     private Dosen[] pembimbing;
-    private final String judul;
+    private String judul;
     private String KK;
     private int posisi;
     public int i;
@@ -32,6 +32,15 @@ public class TugasAkhir {
             i++;
         }
     }
+
+    public String getJudul() {
+        return judul;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+    
     public void setKK(String KK){
         this.KK=KK;
     }
