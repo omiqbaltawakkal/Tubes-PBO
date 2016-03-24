@@ -9,92 +9,70 @@ package tubespbo;
  *
  * @author user
  */
+import java.util.ArrayList;
+
 public class Aplikasi {
-    private ArrayList<Dosen> daftarDosen = new ArrayList();
-    private Mahasiswa [] daftarMahasiswa = new Mahasiswa[50];
-    private KelompokTA [] daftarKelompok = new KelompokTA[20];
-    private TugasAkhir [] daftarTugasAkhir = new TugasAkhir[10];
-    private int counterDosen;
-    private int counterMhs;
-    private int counterKel;
-    private int counterTugas;
+    private ArrayList<Dosen> daftarDosen = new ArrayList<Dosen>();
+    private ArrayList<Mahasiswa> daftarMahasiswa = new ArrayList<Mahasiswa>();
+    private ArrayList<KelompokTA> daftarKelompok = new ArrayList<KelompokTA>();
+    private ArrayList<TugasAkhir> daftarTugasAkhir = new ArrayList<TugasAkhir>();
     
     public void addMahasiswa(Mahasiswa m){
-        if (counterMhs <10){
-        daftarMahasiswa[counterMhs]= m;
-        counterMhs++;}
-        else{
-            System.out.println("Penuh");
-        }
+        daftarMahasiswa.add(m);
     }
     public void addDosen(Dosen d){
-        if(counterDosen<10){
-        daftarDosen[counterDosen] = d;
-        counterDosen++;}
-        else{
-            System.out.println("Penuh");
-        }
+        daftarDosen.add(d);
     }
     /*public Mahasiswa getMahasiswa(long nim){
         for (int i=0;i<50;i++){
-            if (daftarMahasiswa[i].getNim() == nim){
-                return daftarMahasiswa[i];
+            if (daftarMahasiswa.get(i).getNim() == nim){
+                return daftarMahasiswa.get(i);
             }
         }
     }*/
     public void deleteMahasiswa(long nim){
         for (int i=0;i<50;i++){
-            if (daftarMahasiswa[i].getNim() == nim){
-                daftarMahasiswa[i]=null;
+            if (daftarMahasiswa.get(i).getNim() == nim){
+                daftarMahasiswa.remove(i);
             }
         }
     }/*
     public Dosen getDaftarDosen(long nip) {
         for (int i=0;i<50;i++){
-            if (daftarDosen[i].getNip() == nip){
-                return daftarDosen[i];
+            if (daftarDosen.get(i).getNip() == nip){
+                return daftarDosen.get(i);
             }
         }
     }*/
      public void deleteDosen(long nip){
         for (int i=0;i<50;i++){
-            if (daftarDosen[i].getNip() == nip){
-                daftarDosen[i]=null;
+            if (daftarDosen.get(i).getNip() == nip){
+                daftarDosen.remove(i);
             }
         }
     }
 
     /*public KelompokTA getKelompok(String topik) {
         for (int i=0; i<20;i++){
-            if(daftarKelompok[i].getTopik() == topik)
-                return daftarKelompok[i];
+            if(daftarKelompok.get(i).getTopik() == topik)
+                return daftarKelompok.get(i);
         }
     }*/
 
     public void setKelompok(KelompokTA kelompok) {
-        if (counterKel<20){
-        daftarKelompok[counterKel] = kelompok;
-        counterKel++;}
-        else
-        {
-            System.out.println("Penuh");
-        }
+        daftarKelompok.add(kelompok);
     }
 
     /*public TugasAkhir getTugas(String judul) {
         for (int i=0;i<10;i++){
-            if(daftarTugasAkhir[i].getJudul().equals(judul)){   
-                return daftarTugasAkhir[i];
+            if(daftarTugasAkhir.get(i).getJudul().equals(judul)){   
+                return daftarTugasAkhir.get(i);
             }
         }
     }*/
 
     public void setTugas(TugasAkhir tugas) {
-        if (counterTugas<10)
-            daftarTugasAkhir[counterTugas] = tugas;
-        else{
-            System.out.println("Penuh");
-        }
+        daftarTugasAkhir.add(tugas);
     }
     
     public void menuCreate(int pil){
