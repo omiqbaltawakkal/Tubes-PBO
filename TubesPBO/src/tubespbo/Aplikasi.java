@@ -10,7 +10,7 @@ package tubespbo;
  * @author user
  */
 public class Aplikasi {
-    private Dosen [] daftarDosen = new Dosen[10];
+    private ArrayList<Dosen> daftarDosen = new ArrayList();
     private Mahasiswa [] daftarMahasiswa = new Mahasiswa[50];
     private KelompokTA [] daftarKelompok = new KelompokTA[20];
     private TugasAkhir [] daftarTugasAkhir = new TugasAkhir[10];
@@ -76,7 +76,9 @@ public class Aplikasi {
         daftarKelompok[counterKel] = kelompok;
         counterKel++;}
         else
-        {System.out.println("Penuh");}
+        {
+            System.out.println("Penuh");
+        }
     }
 
     /*public TugasAkhir getTugas(String judul) {
@@ -96,7 +98,10 @@ public class Aplikasi {
     }
     
     public void menuCreate(int pil){
-        
+        switch (pil){
+            case 1:
+                Mahasiswa m = new Mahasiswa("s","a",1);
+        }
     }
     public void menuDelete(int pil){
     

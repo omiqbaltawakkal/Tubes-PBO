@@ -15,6 +15,7 @@ public class TubesPBO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //all below is unneccesary
         Mahasiswa m1 = new Mahasiswa("adi","Pria",123123);
         Mahasiswa m2 = new Mahasiswa("budi","Pria",123124);
         Mahasiswa m3 = new Mahasiswa("friska","Wanita",123122);
