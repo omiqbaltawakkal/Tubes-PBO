@@ -29,8 +29,8 @@ public class TubesPBO {
         TugasAkhir t1 = new TugasAkhir("satu","icm");
         TugasAkhir t2 = new TugasAkhir("dua","side");
         
-        KelompokTA k1 = new KelompokTA("icm",3);
-        KelompokTA k2 = new KelompokTA("side",2);
+        KelompokTA k1 = new KelompokTA("Hebat","icm",3);
+        KelompokTA k2 = new KelompokTA("Jaya","side",2);
         
         m1.createTugasAkhir(t1);
         

@@ -31,7 +31,7 @@ public class Aplikasi {
         }
     }*/
     public void deleteMahasiswa(long nim){
-        for (int i=0;i<50;i++){
+        for (int i=0;i<daftarMahasiswa.size();i++){
             if (daftarMahasiswa.get(i).getNim() == nim){
                 daftarMahasiswa.remove(i);
             }
@@ -45,7 +45,7 @@ public class Aplikasi {
         }
     }*/
      public void deleteDosen(long nip){
-        for (int i=0;i<50;i++){
+        for (int i=0;i<daftarDosen.size();i++){
             if (daftarDosen.get(i).getNip() == nip){
                 daftarDosen.remove(i);
             }
@@ -58,6 +58,13 @@ public class Aplikasi {
                 return daftarKelompok.get(i);
         }
     }*/
+    public void deleteKelompok(String nama){
+        for (int i=0;i<daftarKelompok.size();i++){
+            if (daftarKelompok.get(i).getNamaKelompok().equals(nama)){
+                daftarKelompok.remove(i);
+            }
+        }
+    }
 
     public void setKelompok(KelompokTA kelompok) {
         daftarKelompok.add(kelompok);
@@ -74,15 +81,40 @@ public class Aplikasi {
     public void setTugas(TugasAkhir tugas) {
         daftarTugasAkhir.add(tugas);
     }
-    
+    public void deleteTugasAkhir(String judul){
+        for (int i=0;i<daftarTugasAkhir.size();i++){
+            if (daftarTugasAkhir.get(i).getJudul().equals(judul)){
+                daftarTugasAkhir.remove(i);
+            }
+        }
+    }
     public void menuCreate(int pil){
         switch (pil){
             case 1:
                 Mahasiswa m = new Mahasiswa("s","a",1);
+                addMahasiswa(m);
+            case 2:
+                Dosen d = new Dosen("a","d",123,"s");
+                addDosen(d);
+            case 3: 
+                KelompokTA kel = new KelompokTA("joss","side",3);
+                setKelompok(kel);
+            case 4:
+                TugasAkhir ta = new TugasAkhir("asd","wew");
+                setTugas(ta);
         }
     }
     public void menuDelete(int pil){
-    
+        switch (pil){
+            case 1:
+                deleteMahasiswa(123123);
+            case 2:
+                deleteDosen(123123);
+            case 3: 
+                deleteKelompok("joss");
+            case 4:
+                deleteTugasAkhir("asd");
+    }
     }
     public void menuDaftar(int pil){
     

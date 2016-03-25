@@ -11,15 +11,16 @@ package tubespbo;
  */
 public class KelompokTA{
     public String topik;
+    private String namaKelompok;
     private Mahasiswa[] anggota;
     private int numAnggota;
     public int max;
         
-    public KelompokTA(String topik, int num){
+    public KelompokTA(String nama, String topik, int num){
         this.topik = topik;
         anggota = new Mahasiswa[num];
-        //numAnggota=num;
         max=num;
+        namaKelompok=nama;
     }
     public void addAnggota(Mahasiswa m){
             if(numAnggota<max){
@@ -51,4 +52,13 @@ public class KelompokTA{
         }
         return anggota[numOfAnggota];
     }
+
+    public String getNamaKelompok() {
+        return namaKelompok;
+    }
+
+    public void setNamaKelompok(String namaKelompok) {
+        this.namaKelompok = namaKelompok;
+    }
+    
 }
