@@ -5,17 +5,19 @@
  */
 package tubespbo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public abstract class Orang{
+public abstract class Orang implements Serializable{
 	private String nama;
 	private String JenisKelamin;
 	
-	public Orang(String nama, String JenisKelamin){
+	public Orang(String nama, String jenis){
 		this.nama=nama;
-		setJenisKelamin(JenisKelamin);
+		this.JenisKelamin= jenis;
 	}
 	public void setNama(String nama){
 		this.nama=nama;
@@ -24,7 +26,7 @@ public abstract class Orang{
 		return nama;
 	}
 	public void setJenisKelamin(String JenisKelamin){
-		if (JenisKelamin =="Pria" || JenisKelamin =="Wanita")
+		if ("Pria".equals(JenisKelamin) || "Wanita".equals(JenisKelamin))
 			this.JenisKelamin=JenisKelamin;
 		else
 			this.JenisKelamin=null;

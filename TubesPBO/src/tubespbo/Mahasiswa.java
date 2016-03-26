@@ -9,7 +9,7 @@ package tubespbo;
  *
  * @author user
  */
-public class Mahasiswa extends Orang{
+public class Mahasiswa extends Orang {
     private long nim;
     private TugasAkhir[] tugasakhir;
     private int numOfTugasAkhir;
@@ -19,12 +19,6 @@ public class Mahasiswa extends Orang{
         this.nim=nim;
         tugasakhir = new TugasAkhir[1];
     }
-    /*public void createTA(String judul,String KK){
-        if(tugasakhir.length>=numOfJudul) {
-            tugasakhir[numOfJudul]=new TugasAkhir(judul,KK);
-            numOfJudul++;
-        }else System.out.println("error");
-    }*/
     public void createTugasAkhir(TugasAkhir t){
         if(numOfTugasAkhir<tugasakhir.length){
             tugasakhir[numOfTugasAkhir]=t;
