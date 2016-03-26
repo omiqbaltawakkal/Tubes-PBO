@@ -10,6 +10,7 @@ package tubespbo;
  * @author user
  */
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Aplikasi {
     private ArrayList<Dosen> daftarDosen = new ArrayList<Dosen>();
@@ -88,35 +89,64 @@ public class Aplikasi {
             }
         }
     }
-    public void menuCreate(int pil){
-        switch (pil){
+    public void menuMhsCreate(String nama, String jenis, long nim){
+        Mahasiswa m = new Mahasiswa("s","a",1);
+        addMahasiswa(m);    
+    }
+    public void menuMhsDelete(long nim){
+        deleteMahasiswa(nim);
+    }
+    public void menuDosenCreate(String nama, String jenis, long nip){
+        Dosen d = new Dosen("a","d",123,"s");
+        addDosen(d);
+    }
+    public void menuDosenDelete(long nip){
+        deleteDosen(nip);
+    }
+    public void menuKelompokCreate(String nama, String topik, int num){
+        KelompokTA kl = new KelompokTA("nama","topik",3);
+    }
+    public void menuKelompokDelete(String nama){
+        deleteTugasAkhir(nama);
+    }
+    public void menuTugasCreate(String judul, String kk){
+        TugasAkhir ta = new TugasAkhir("asd","wew");
+        setTugas(ta);
+    }
+    public void menuTugasDelete(String judul){
+        deleteTugasAkhir(judul);
+    }
+    public void mainMenu(int pil){
+        System.out.println("Main Menu Sisfo TA");
+        System.out.println("1. Daftar Data Mahasiswa");
+        System.out.println("2. Daftar Data Dosen");
+        System.out.println("3. Daftar Data Kelompok TA");
+        System.out.println("4. Daftar Data Tugas Akhir");
+        System.out.println();
+        System.out.println("5. Delete Data Mahasiswa");
+        System.out.println("6. Delete Data Dosen");
+        System.out.println("7. Delete Data Kelompok TA");
+        System.out.println("8. Delete Data Tugas AKhir");
+        Scanner inputan = new Scanner(System.in);
+        System.out.print("masukkan pilihan : ");
+        int pilihan = inputan.nextInt();
+        switch (pilihan){
             case 1:
-                Mahasiswa m = new Mahasiswa("s","a",1);
-                addMahasiswa(m);
+                menuMhsCreate("nama","jenis",1123123); 
             case 2:
-                Dosen d = new Dosen("a","d",123,"s");
-                addDosen(d);
-            case 3: 
-                KelompokTA kel = new KelompokTA("joss","side",3);
-                setKelompok(kel);
+                menuDosenCreate("nama","jeni",241241);
+            case 3:
+                menuKelompokCreate("nama kel","topik",2);
             case 4:
-                TugasAkhir ta = new TugasAkhir("asd","wew");
-                setTugas(ta);
+                menuTugasCreate("judul","icm");
+            case 5:
+                menuMhsDelete(1223213);
+            case 6:
+                menuDosenDelete(123123);
+            case 7:
+                menuKelompokDelete("nama kelompok");
+            case 8:
+                menuTugasDelete("judul");
         }
-    }
-    public void menuDelete(int pil){
-        switch (pil){
-            case 1:
-                deleteMahasiswa(123123);
-            case 2:
-                deleteDosen(123123);
-            case 3: 
-                deleteKelompok("joss");
-            case 4:
-                deleteTugasAkhir("asd");
-    }
-    }
-    public void menuDaftar(int pil){
-    
     }
 }
