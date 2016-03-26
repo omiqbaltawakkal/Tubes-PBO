@@ -64,7 +64,7 @@ public class Aplikasi {
     public KelompokTA getKelompok(String topik) {
         KelompokTA tiga = null;
         for (int i=0; i<20;i++){
-            if(daftarKelompok.get(i).getTopik() == topik)
+            if(daftarKelompok.get(i).getTopik().equals(topik))
                 tiga = daftarKelompok.get(i);
         }
         return tiga;
@@ -142,6 +142,7 @@ public class Aplikasi {
         int pilihan = inputan.nextInt();
         do {
             System.out.println("Main Menu Sisfo TA");
+            System.out.println();
             System.out.println("1. Daftar Data Mahasiswa");
             System.out.println("2. Daftar Data Dosen");
             System.out.println("3. Daftar Data Kelompok TA");
@@ -151,6 +152,7 @@ public class Aplikasi {
             System.out.println("6. Delete Data Dosen");
             System.out.println("7. Delete Data Kelompok TA");
             System.out.println("8. Delete Data Tugas AKhir");
+            System.out.println();
             System.out.print("Masukkan Pilihan Menu: ");
             switch (pilihan) {
                 case 1:
