@@ -9,9 +9,13 @@ package tubespbo;
  *
  * @author user
  */
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.InputMismatchException;
 
 public class Aplikasi {
 
@@ -28,15 +32,16 @@ public class Aplikasi {
         daftarDosen.add(d);
     }
 
-    public Mahasiswa getMahasiswa(long nim){
+    public Mahasiswa getMahasiswa(long nim) {
         Mahasiswa satu = null;
-        for (int i=0;i<50;i++){
-            if (daftarMahasiswa.get(i).getNim() == nim){
+        for (int i = 0; i < 50; i++) {
+            if (daftarMahasiswa.get(i).getNim() == nim) {
                 satu = daftarMahasiswa.get(i);
             }
         }
         return satu;
     }
+
     public void deleteMahasiswa(long nim) {
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
             if (daftarMahasiswa.get(i).getNim() == nim) {
@@ -44,15 +49,17 @@ public class Aplikasi {
             }
         }
     }
+
     public Dosen getDaftarDosen(long nip) {
         Dosen dua = null;
-        for (int i=0;i<50;i++){
-            if (daftarDosen.get(i).getNip() == nip){
+        for (int i = 0; i < 50; i++) {
+            if (daftarDosen.get(i).getNip() == nip) {
                 dua = daftarDosen.get(i);
             }
         }
         return dua;
     }
+
     public void deleteDosen(long nip) {
         for (int i = 0; i < daftarDosen.size(); i++) {
             if (daftarDosen.get(i).getNip() == nip) {
@@ -63,12 +70,14 @@ public class Aplikasi {
 
     public KelompokTA getKelompok(String topik) {
         KelompokTA tiga = null;
-        for (int i=0; i<20;i++){
-            if(daftarKelompok.get(i).getTopik().equals(topik))
+        for (int i = 0; i < 20; i++) {
+            if (daftarKelompok.get(i).getTopik().equals(topik)) {
                 tiga = daftarKelompok.get(i);
+            }
         }
         return tiga;
     }
+
     public void deleteKelompok(String nama) {
         for (int i = 0; i < daftarKelompok.size(); i++) {
             if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
@@ -83,13 +92,14 @@ public class Aplikasi {
 
     public TugasAkhir getTugas(String judul) {
         TugasAkhir empat = null;
-        for (int i=0;i<10;i++){
-            if(daftarTugasAkhir.get(i).getJudul().equals(judul)){   
+        for (int i = 0; i < 10; i++) {
+            if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
                 empat = daftarTugasAkhir.get(i);
             }
         }
         return empat;
     }
+
     public void setTugas(TugasAkhir tugas) {
         daftarTugasAkhir.add(tugas);
     }
@@ -102,44 +112,65 @@ public class Aplikasi {
         }
     }
 
-    public void menuMhsCreate(String nama, String jenis, long nim) {
-        Mahasiswa m = new Mahasiswa("s", "a", 1);
+    public void menuMhsCreate(String nama, String jenis, long nim) throws FileNotFoundException, IOException {
+        Mahasiswa m = new Mahasiswa(nama, jenis, nim);
         addMahasiswa(m);
+        FileOutputStream fos = new FileOutputStream("Data Mahasiswa.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(m);
+        System.out.println("Data Telah Disimpan");
     }
 
     public void menuMhsDelete(long nim) {
         deleteMahasiswa(nim);
+        System.out.println("Data Telah Dihapus");
     }
 
-    public void menuDosenCreate(String nama, String jenis, long nip, String kode) {
-        Dosen d = new Dosen("a", "d", 123,"s");
+    public void menuDosenCreate(String nama, String jenis, long nip, String kode) throws FileNotFoundException, IOException {
+        Dosen d = new Dosen(nama, jenis, nip, kode);
         addDosen(d);
+        FileOutputStream fos = new FileOutputStream("Data Dosen.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(d);
+        System.out.println("Data Telah Disimpan");
     }
 
     public void menuDosenDelete(long nip) {
         deleteDosen(nip);
+        System.out.println("Data Telah Dihapus");
     }
 
-    public void menuKelompokCreate(String nama, String topik, int num) {
-        KelompokTA kl = new KelompokTA("nama", "topik", 3);
+    public void menuKelompokCreate(String nama, String topik, int num) throws FileNotFoundException, IOException {
+        KelompokTA kl = new KelompokTA(nama, topik, num);
+        setKelompok(kl);
+        FileOutputStream fos = new FileOutputStream("Data Kelompok.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(kl);
+        System.out.println("Data Telah Disimpan");
     }
 
     public void menuKelompokDelete(String nama) {
         deleteTugasAkhir(nama);
+        System.out.println("Data Telah Dihapus");
     }
 
-    public void menuTugasCreate(String judul, String kk) {
-        TugasAkhir ta = new TugasAkhir("asd", "wew");
+    public void menuTugasCreate(String judul, String kk) throws FileNotFoundException, IOException {
+        TugasAkhir ta = new TugasAkhir(judul, kk);
         setTugas(ta);
+        FileOutputStream fos = new FileOutputStream("Data Tugas Akhir.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(ta);
+        System.out.println("Data Telah Disimpan");
     }
 
     public void menuTugasDelete(String judul) {
         deleteTugasAkhir(judul);
+        System.out.println("Data Telah Dihapus");
     }
 
     public void mainMenu() throws IOException {
         Scanner inputan = new Scanner(System.in);
-        int pilihan = inputan.nextInt();
+        int pilihan;
         do {
             System.out.println("Main Menu Sisfo TA");
             System.out.println();
@@ -154,58 +185,150 @@ public class Aplikasi {
             System.out.println("8. Delete Data Tugas AKhir");
             System.out.println();
             System.out.print("Masukkan Pilihan Menu: ");
+            pilihan = inputan.nextInt();
             switch (pilihan) {
                 case 1:
-                    System.out.print("Nama Mahasiswa: ");
-                    String nm = inputan.next();
-                    System.out.print("Jenis Kelamin : ");
-                    String jk = inputan.next();
-                    System.out.print("NIM : ");
-                    long nim = inputan.nextLong();
-                    menuMhsCreate(nm,jk,nim);
+                    String nm = null;
+                    String jk = null;
+                    long nim = 0;
+                    try {
+                        System.out.print("Nama Mahasiswa: ");
+                        nm = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input Nama And, ini Kolom Nama !");
+                    }
+                    try {
+                        System.out.print("Jenis Kelamin : ");
+                        jk = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
+                    }
+                    try {
+                        System.out.print("NIM : ");
+                        nim = inputan.nextLong();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Masukkan NIM Anda !");
+                    }
+                    menuMhsCreate(nm, jk, nim);
+                    break;
                 case 2:
-                    System.out.print("Nama Dosen : ");
-                    String nm1 = inputan.next();
-                    System.out.print("Jenis Kelamin : ");
-                    String jk1 = inputan.next();
-                    System.out.print("NIP : ");
-                    long nip = inputan.nextLong();
-                    System.out.print("Kode Dosen : ");
-                    String kd = inputan.next();
-                    menuDosenCreate(nm1,jk1,nip,kd);
+                    String nm1 = null;
+                    String jk1 = null;
+                    long nip = 0;
+                    String kd = null;
+                    try {
+                        System.out.print("Nama Dosen : ");
+                        nm1 = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input Nama Anda, ini Kolom Nama !");
+                    }
+                    try {
+                        System.out.print("Jenis Kelamin : ");
+                        jk1 = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
+                    }
+                    try {
+                        System.out.print("NIP : ");
+                        nip = inputan.nextLong();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input NIP Anda !");
+                    }
+                    try {
+                        System.out.print("Kode Dosen : ");
+                        System.out.println("(3 Huruf)");
+                        kd = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hanya 3 Huruf !");
+                    }
+                    menuDosenCreate(nm1, jk1, nip, kd);
+                    break;
                 case 3:
-                    System.out.print("Nama Kelompok : ");
-                    String nk = inputan.next();
-                    System.out.print("Topik Tugas Akhir : ");
-                    String tp = inputan.next();
-                    System.out.print("Jumlah Max Anggota : ");
-                    int jml = inputan.nextInt();
-                    menuKelompokCreate(nk,tp,jml);
+                    String nk = null;
+                    String tp = null;
+                    int jml = 0;
+                    try {
+                        System.out.print("Nama Kelompok : ");
+                        nk = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input Nama Kelompok Anda !");
+                    }
+                    try {
+                        System.out.print("Topik Tugas Akhir : ");
+                        System.out.println("(topik berbeda dengan judul)");
+                        tp = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Topik Tugas Akhir Anda !");
+                    }
+                    try {
+                        System.out.print("Jumlah Max Anggota : ");
+                        jml = inputan.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Angka yang membatasi Jumlah Anggota Kelompok Anda");
+                    }
+                    menuKelompokCreate(nk, tp, jml);
+                    break;
                 case 4:
-                    System.out.print("Judul Tugas Akhir : ");
-                    String jdl = inputan.next();
-                    System.out.print("Jenis Kelompok Keahlian(KK) : ");
-                    String kk = inputan.next();
-                    menuTugasCreate(jdl,kk);
+                    String jdl = null;
+                    String kk = null;
+                    try {
+                        System.out.print("Judul Tugas Akhir : ");
+                        jdl = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Judul Tugas Anda !");
+                    }
+                    try {
+                        System.out.print("Jenis Kelompok Keahlian(KK) : ");
+                        kk = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hanya 'ICM', 'SIDE', 'TELE' !");
+                    }
+                    menuTugasCreate(jdl, kk);
+                    break;
                 case 5:
-                    System.out.print("NIM Mahasiswa : ");
-                    long nim2 = inputan.nextLong();
+                    long nim2 = 0;
+                    try {
+                        System.out.print("NIM Mahasiswa : ");
+                        nim2 = inputan.nextLong();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input NIM yang ingin di hapus !");
+                    }
                     menuMhsDelete(nim2);
+                    break;
                 case 6:
-                    System.out.print("NIP Dosen : ");
-                    long nip2 = inputan.nextLong();
+                    long nip2 = 0;
+                    try {
+                        System.out.print("NIP Dosen : ");
+                        nip2 = inputan.nextLong();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input NIP yang ingin di hapus !");
+                    }
                     menuDosenDelete(nip2);
+                    break;
                 case 7:
-                    System.out.print("Nama Kelompok : ");
-                    String kel = inputan.next();
+                    String kel = null;
+                    try {
+                        System.out.print("Nama Kelompok : ");
+                        kel = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Nama Kelompok yang ingin di hapus !");
+                    }
                     menuKelompokDelete(kel);
+                    break;
                 case 8:
+                    String jdl2 = null;
+                    try{
                     System.out.print("Judul Tugas Akhir : ");
-                    String jdl2 = inputan.next();
+                    jdl2 = inputan.next();
+                    }catch(InputMismatchException e){
+                        System.out.println("Input judul yang ingin di hapus !");
+                    }
                     menuTugasDelete(jdl2);
-                default: 
+                    break;
+                default:
                     System.out.println("Pilih 1-8 untuk Pilihan Menu atau 0 untuk Keluar");
                     Runtime.getRuntime().exec("cls");
+                    break;
             }
         } while (pilihan != 0);
     }
