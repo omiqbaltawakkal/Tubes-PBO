@@ -9,11 +9,13 @@ package tubespbo;
  *
  * @author user
  */
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 
@@ -42,7 +44,9 @@ public class Aplikasi {
         return satu;
     }
 
-    public void deleteMahasiswa(long nim) {
+    public void deleteMahasiswa(long nim) throws FileNotFoundException, IOException {
+        //FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
+        //ObjectInputStream ois = new ObjectInputStream(fis); 
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
             if (daftarMahasiswa.get(i).getNim() == nim) {
                 daftarMahasiswa.remove(i);
@@ -79,6 +83,7 @@ public class Aplikasi {
     }
 
     public void deleteKelompok(String nama) {
+        
         for (int i = 0; i < daftarKelompok.size(); i++) {
             if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
                 daftarKelompok.remove(i);
@@ -122,7 +127,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuMhsDelete(long nim) {
+    public void menuMhsDelete(long nim) throws IOException {
         deleteMahasiswa(nim);
         System.out.println("Data Telah Dihapus");
     }
