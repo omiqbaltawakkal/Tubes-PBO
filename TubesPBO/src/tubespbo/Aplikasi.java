@@ -118,6 +118,7 @@ public class Aplikasi {
         FileOutputStream fos = new FileOutputStream("Data Mahasiswa.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(m);
+        oos.flush();
         System.out.println("Data Telah Disimpan");
     }
 
@@ -132,6 +133,7 @@ public class Aplikasi {
         FileOutputStream fos = new FileOutputStream("Data Dosen.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(d);
+        oos.flush();
         System.out.println("Data Telah Disimpan");
     }
 
@@ -146,6 +148,7 @@ public class Aplikasi {
         FileOutputStream fos = new FileOutputStream("Data Kelompok.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(kl);
+        oos.flush();
         System.out.println("Data Telah Disimpan");
     }
 
@@ -160,6 +163,7 @@ public class Aplikasi {
         FileOutputStream fos = new FileOutputStream("Data Tugas Akhir.txt");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(ta);
+        oos.flush();
         System.out.println("Data Telah Disimpan");
     }
 
