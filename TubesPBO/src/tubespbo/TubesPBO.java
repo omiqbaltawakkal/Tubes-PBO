@@ -5,6 +5,7 @@
  */
 package tubespbo;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -16,8 +17,10 @@ public class TubesPBO {
     /**^
      * @param args the command line arguments
      * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.lang.ClassNotFoundException
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         Aplikasi apl = new Aplikasi();
         apl.mainMenu();
     }
