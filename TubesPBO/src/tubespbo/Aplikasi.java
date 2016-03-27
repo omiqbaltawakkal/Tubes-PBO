@@ -236,16 +236,16 @@ public class Aplikasi {
                         System.out.println("Input Nama And, ini Kolom Nama !");
                     }
                     try {
-                        System.out.print("Jenis Kelamin : ");
-                        jk = inputan.next();
-                    } catch (InputMismatchException e) {
-                        System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
-                    }
-                    try {
                         System.out.print("NIM : ");
                         nim = inputan.nextLong();
                     } catch (InputMismatchException e) {
                         System.out.println("Masukkan NIM Anda !");
+                    }
+                    try {
+                        System.out.print("Jenis Kelamin : ");
+                        jk = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
                     }
                     menuMhsCreate(nm, jk, nim);
                     break;
@@ -261,16 +261,16 @@ public class Aplikasi {
                         System.out.println("Input Nama Anda, ini Kolom Nama !");
                     }
                     try {
-                        System.out.print("Jenis Kelamin : ");
-                        jk1 = inputan.next();
-                    } catch (InputMismatchException e) {
-                        System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
-                    }
-                    try {
                         System.out.print("NIP : ");
                         nip = inputan.nextLong();
                     } catch (InputMismatchException e) {
                         System.out.println("Input NIP Anda !");
+                    }
+                    try {
+                        System.out.print("Jenis Kelamin : ");
+                        jk1 = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
                     }
                     try {
                         System.out.print("Kode Dosen : ");

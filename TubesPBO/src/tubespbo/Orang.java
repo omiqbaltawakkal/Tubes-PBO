@@ -26,10 +26,10 @@ public abstract class Orang implements Serializable{
 		return nama;
 	}
 	public void setJenisKelamin(String JenisKelamin){
-		if ("Pria".equals(JenisKelamin) || "Wanita".equals(JenisKelamin))
-			this.JenisKelamin=JenisKelamin;
+		if (!"Pria".equals(JenisKelamin) || !"Wanita".equals(JenisKelamin))
+                    this.JenisKelamin=null;
 		else
-			this.JenisKelamin=null;
+                    this.JenisKelamin=JenisKelamin;
 	}
 	public String getJenisKelamin(){
 		return JenisKelamin;
