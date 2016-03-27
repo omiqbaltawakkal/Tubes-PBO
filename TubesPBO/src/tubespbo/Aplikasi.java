@@ -65,7 +65,7 @@ public class Aplikasi {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
         while (ois.readObject() != null) {
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < daftarDosen.size(); i++) {
                 if (daftarDosen.get(i).getNip() == nip) {
                     dua = daftarDosen.get(i);
                 }
@@ -91,7 +91,7 @@ public class Aplikasi {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
         while (ois.readObject() != null) {
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < daftarKelompok.size(); i++) {
                 if (daftarKelompok.get(i).getTopik().equals(topik)) {
                     tiga = daftarKelompok.get(i);
                 }
@@ -121,7 +121,7 @@ public class Aplikasi {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
         while (ois.readObject() != null) {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < daftarTugasAkhir.size(); i++) {
                 if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
                     empat = daftarTugasAkhir.get(i);
                 }
