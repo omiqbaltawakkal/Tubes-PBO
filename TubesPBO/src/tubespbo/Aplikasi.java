@@ -44,12 +44,14 @@ public class Aplikasi {
         return satu;
     }
 
-    public void deleteMahasiswa(long nim) throws FileNotFoundException, IOException {
+    public void deleteMahasiswa(long nim) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
-        ObjectInputStream ois = new ObjectInputStream(fis); 
-        for (int i = 0; i < daftarMahasiswa.size(); i++) {
-            if (daftarMahasiswa.get(i).getNim() == nim) {
-                daftarMahasiswa.remove(i);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < daftarMahasiswa.size(); i++) {
+                if (daftarMahasiswa.get(i).getNim() == nim) {
+                    daftarMahasiswa.remove(i);
+                }
             }
         }
     }
@@ -64,12 +66,14 @@ public class Aplikasi {
         return dua;
     }
 
-    public void deleteDosen(long nip) throws FileNotFoundException, IOException {
+    public void deleteDosen(long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Dosentxt");
         ObjectInputStream ois = new ObjectInputStream(fis);
-        for (int i = 0; i < daftarDosen.size(); i++) {
-            if (daftarDosen.get(i).getNip() == nip) {
-                daftarDosen.remove(i);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < daftarDosen.size(); i++) {
+                if (daftarDosen.get(i).getNip() == nip) {
+                    daftarDosen.remove(i);
+                }
             }
         }
     }
@@ -84,12 +88,14 @@ public class Aplikasi {
         return tiga;
     }
 
-    public void deleteKelompok(String nama) throws FileNotFoundException, IOException {
+    public void deleteKelompok(String nama) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Kelompok TA.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
-        for (int i = 0; i < daftarKelompok.size(); i++) {
-            if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
-                daftarKelompok.remove(i);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < daftarKelompok.size(); i++) {
+                if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
+                    daftarKelompok.remove(i);
+                }
             }
         }
     }
@@ -112,12 +118,14 @@ public class Aplikasi {
         daftarTugasAkhir.add(tugas);
     }
 
-    public void deleteTugasAkhir(String judul) throws FileNotFoundException, IOException {
+    public void deleteTugasAkhir(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Tugas Akhir.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
-        for (int i = 0; i < daftarTugasAkhir.size(); i++) {
-            if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
-                daftarTugasAkhir.remove(i);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < daftarTugasAkhir.size(); i++) {
+                if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
+                    daftarTugasAkhir.remove(i);
+                }
             }
         }
     }
@@ -132,7 +140,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuMhsDelete(long nim) throws IOException {
+    public void menuMhsDelete(long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
         deleteMahasiswa(nim);
         System.out.println("Data Telah Dihapus");
     }
@@ -147,7 +155,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuDosenDelete(long nip) throws IOException {
+    public void menuDosenDelete(long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
         deleteDosen(nip);
         System.out.println("Data Telah Dihapus");
     }
@@ -162,7 +170,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuKelompokDelete(String nama) throws IOException {
+    public void menuKelompokDelete(String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
         deleteTugasAkhir(nama);
         System.out.println("Data Telah Dihapus");
     }
@@ -177,12 +185,12 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuTugasDelete(String judul) throws IOException {
+    public void menuTugasDelete(String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
         deleteTugasAkhir(judul);
         System.out.println("Data Telah Dihapus");
     }
 
-    public void mainMenu() throws IOException {
+    public void mainMenu() throws IOException, FileNotFoundException, ClassNotFoundException {
         Scanner inputan = new Scanner(System.in);
         int pilihan;
         do {
@@ -331,10 +339,10 @@ public class Aplikasi {
                     break;
                 case 8:
                     String jdl2 = null;
-                    try{
-                    System.out.print("Judul Tugas Akhir : ");
-                    jdl2 = inputan.next();
-                    }catch(InputMismatchException e){
+                    try {
+                        System.out.print("Judul Tugas Akhir : ");
+                        jdl2 = inputan.next();
+                    } catch (InputMismatchException e) {
                         System.out.println("Input judul yang ingin di hapus !");
                     }
                     menuTugasDelete(jdl2);
