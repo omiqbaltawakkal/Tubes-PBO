@@ -205,6 +205,22 @@ public class Aplikasi {
         deleteTugasAkhir(judul);
         System.out.println("Data Telah Dihapus");
     }
+    
+    public void daftarMhsKelompok(long nim,String nama) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getKelompok(nama).addAnggota(getMahasiswa(nim));
+    }
+    
+    public void daftarKelompokDosen(String nama, long nip) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getDaftarDosen(nip).addKelompokTA(getKelompok(nama));
+    }
+    
+    public void daftarDosenTugas(String judul, long nip, int posisi) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getTugas(judul).setPembimbing(getDaftarDosen(nip),posisi);
+    }
+    
+    public void daftarTugasMhs(long nim, String judul) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getMahasiswa(nim).createTugasAkhir(getTugas(judul));
+    }
 
     public void mainMenu() throws IOException, FileNotFoundException, ClassNotFoundException {
         Scanner inputan = new Scanner(System.in);
@@ -221,6 +237,11 @@ public class Aplikasi {
             System.out.println("6. Delete Data Dosen");
             System.out.println("7. Delete Data Kelompok TA");
             System.out.println("8. Delete Data Tugas AKhir");
+            System.out.println();
+            System.out.println("9. Daftar Mahasiswa ke Kelompok TA");
+            System.out.println("10. Daftar Kelompok TA ke Dosen");
+            System.out.println("11. Set Dosen Pembimbing Tugas Akhir");
+            System.out.println("12. Daftar Tugas Akhir untuk Mahasiswa");
             System.out.println();
             System.out.print("Masukkan Pilihan Menu: ");
             pilihan = inputan.nextInt();
@@ -367,8 +388,20 @@ public class Aplikasi {
                     }
                     menuTugasDelete(jdl2);
                     break;
+                case 9:
+                    long nim3 = 0;
+                    String nama2 = null;
+                    System.out.println("Masukkan NIM Anda : ");
+                    nim3 = inputan.nextLong();
+                    daftarMhsKelompok(nim3,nama2);
+                case 10:
+                    
+                case 11:
+                    
+                case 12:
+                    
                 default:
-                    System.out.println("Pilih 1-8 untuk Pilihan Menu atau 0 untuk Keluar");
+                    System.out.println("Pilih 1-12 untuk Pilihan Menu atau 0 untuk Keluar");
                     Runtime.getRuntime().exec("cls");
                     break;
             }
