@@ -45,8 +45,8 @@ public class Aplikasi {
     }
 
     public void deleteMahasiswa(long nim) throws FileNotFoundException, IOException {
-        //FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
-        //ObjectInputStream ois = new ObjectInputStream(fis); 
+        FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis); 
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
             if (daftarMahasiswa.get(i).getNim() == nim) {
                 daftarMahasiswa.remove(i);
@@ -64,7 +64,9 @@ public class Aplikasi {
         return dua;
     }
 
-    public void deleteDosen(long nip) {
+    public void deleteDosen(long nip) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream("Data Dosentxt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
         for (int i = 0; i < daftarDosen.size(); i++) {
             if (daftarDosen.get(i).getNip() == nip) {
                 daftarDosen.remove(i);
@@ -82,8 +84,9 @@ public class Aplikasi {
         return tiga;
     }
 
-    public void deleteKelompok(String nama) {
-        
+    public void deleteKelompok(String nama) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream("Data Kelompok TA.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
         for (int i = 0; i < daftarKelompok.size(); i++) {
             if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
                 daftarKelompok.remove(i);
@@ -109,7 +112,9 @@ public class Aplikasi {
         daftarTugasAkhir.add(tugas);
     }
 
-    public void deleteTugasAkhir(String judul) {
+    public void deleteTugasAkhir(String judul) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream("Data Tugas Akhir.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
         for (int i = 0; i < daftarTugasAkhir.size(); i++) {
             if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
                 daftarTugasAkhir.remove(i);
@@ -142,7 +147,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuDosenDelete(long nip) {
+    public void menuDosenDelete(long nip) throws IOException {
         deleteDosen(nip);
         System.out.println("Data Telah Dihapus");
     }
@@ -157,7 +162,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuKelompokDelete(String nama) {
+    public void menuKelompokDelete(String nama) throws IOException {
         deleteTugasAkhir(nama);
         System.out.println("Data Telah Dihapus");
     }
@@ -172,7 +177,7 @@ public class Aplikasi {
         System.out.println("Data Telah Disimpan");
     }
 
-    public void menuTugasDelete(String judul) {
+    public void menuTugasDelete(String judul) throws IOException {
         deleteTugasAkhir(judul);
         System.out.println("Data Telah Dihapus");
     }
