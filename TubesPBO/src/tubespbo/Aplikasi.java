@@ -273,9 +273,11 @@ public class Aplikasi {
                         System.out.println("Hanya Pria atau Wanita, tidak boleh yg lain!");
                     }
                     try {
-                        System.out.print("Kode Dosen : ");
-                        System.out.println("(3 Huruf)");
-                        kd = inputan.next();
+                        while (kd == null || kd.length() > 3) {
+                            System.out.print("Kode Dosen : ");
+                            System.out.println("(3 Huruf)");
+                            kd = inputan.next();
+                        }
                     } catch (InputMismatchException e) {
                         System.out.println("Hanya 3 Huruf !");
                     }
@@ -316,8 +318,10 @@ public class Aplikasi {
                         System.out.println("Judul Tugas Anda !");
                     }
                     try {
-                        System.out.print("Jenis Kelompok Keahlian(KK) : ");
-                        kk = inputan.next();
+                        while (kk == null || !"ICM".equals(kk) ||!"SIDE".equals(kk) || !"TELE".equals(kk)) {
+                            System.out.print("Jenis Kelompok Keahlian(KK) : ");
+                            kk = inputan.next();
+                        }
                     } catch (InputMismatchException e) {
                         System.out.println("Hanya 'ICM', 'SIDE', 'TELE' !");
                     }
