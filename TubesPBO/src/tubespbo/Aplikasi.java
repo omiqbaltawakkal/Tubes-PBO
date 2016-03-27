@@ -34,11 +34,15 @@ public class Aplikasi {
         daftarDosen.add(d);
     }
 
-    public Mahasiswa getMahasiswa(long nim) {
+    public Mahasiswa getMahasiswa(long nim) throws FileNotFoundException, IOException, ClassNotFoundException {
         Mahasiswa satu = null;
-        for (int i = 0; i < 50; i++) {
-            if (daftarMahasiswa.get(i).getNim() == nim) {
-                satu = daftarMahasiswa.get(i);
+        FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < 50; i++) {
+                if (daftarMahasiswa.get(i).getNim() == nim) {
+                    satu = daftarMahasiswa.get(i);
+                }
             }
         }
         return satu;
@@ -56,11 +60,15 @@ public class Aplikasi {
         }
     }
 
-    public Dosen getDaftarDosen(long nip) {
+    public Dosen getDaftarDosen(long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
         Dosen dua = null;
-        for (int i = 0; i < 50; i++) {
-            if (daftarDosen.get(i).getNip() == nip) {
-                dua = daftarDosen.get(i);
+        FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < 50; i++) {
+                if (daftarDosen.get(i).getNip() == nip) {
+                    dua = daftarDosen.get(i);
+                }
             }
         }
         return dua;
@@ -78,11 +86,15 @@ public class Aplikasi {
         }
     }
 
-    public KelompokTA getKelompok(String topik) {
+    public KelompokTA getKelompok(String topik) throws FileNotFoundException, IOException, ClassNotFoundException {
         KelompokTA tiga = null;
-        for (int i = 0; i < 20; i++) {
-            if (daftarKelompok.get(i).getTopik().equals(topik)) {
-                tiga = daftarKelompok.get(i);
+        FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < 20; i++) {
+                if (daftarKelompok.get(i).getTopik().equals(topik)) {
+                    tiga = daftarKelompok.get(i);
+                }
             }
         }
         return tiga;
@@ -104,11 +116,15 @@ public class Aplikasi {
         daftarKelompok.add(kelompok);
     }
 
-    public TugasAkhir getTugas(String judul) {
+    public TugasAkhir getTugas(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         TugasAkhir empat = null;
-        for (int i = 0; i < 10; i++) {
-            if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
-                empat = daftarTugasAkhir.get(i);
+        FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        while (ois.readObject() != null) {
+            for (int i = 0; i < 10; i++) {
+                if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
+                    empat = daftarTugasAkhir.get(i);
+                }
             }
         }
         return empat;
