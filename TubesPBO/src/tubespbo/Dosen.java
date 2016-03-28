@@ -65,6 +65,16 @@ public class Dosen extends Orang {
         }
         return topikTA[indeks];
     }
+    
+    public int getPosisiKelompok(String nama){
+        int posisi = 0;
+        for (int i=0; i<topikTA.length;i++){
+            if(topikTA[i].getNamaKelompok().equals(nama)){
+                posisi= i;
+            }
+        }
+        return posisi;
+    }
 
     public void displayKelompok() {
         System.out.println("Data");

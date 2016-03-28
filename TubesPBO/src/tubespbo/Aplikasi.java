@@ -39,7 +39,7 @@ public class Aplikasi {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.txt");
         ObjectInputStream ois = new ObjectInputStream(fis);
         while (ois.readObject() != null) {
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < daftarMahasiswa.size(); i++) {
                 if (daftarMahasiswa.get(i).getNim() == nim) {
                     satu = daftarMahasiswa.get(i);
                 }
@@ -62,6 +62,7 @@ public class Aplikasi {
                 }
             }
         }
+        //removeTugasMhs(nim);
     }
 
     public Dosen getDaftarDosen(long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -236,6 +237,22 @@ public class Aplikasi {
 
     public void daftarTugasMhs(long nim, String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
         getMahasiswa(nim).createTugasAkhir(getTugas(judul));
+    }
+    
+    public void removeMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getKelompok(nama).removeAnggota(getKelompok(nama).getPosisiAnggota(nim));
+    }
+    
+    public void removeKelompokDosen(long nip, String nama) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getDaftarDosen(nip).deleteKelompokTA(getDaftarDosen(nip).getPosisiKelompok(nama));
+    }
+    
+    public void removeDosenTugas(long nip, String judul) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getTugas(judul).removePembimbing(nip);
+    }
+    
+    public void removeTugasMhs(long nim) throws IOException, FileNotFoundException, ClassNotFoundException{
+        getMahasiswa(nim).removeTugas();
     }
 
     public void mainMenu() throws IOException, FileNotFoundException, ClassNotFoundException {

@@ -11,28 +11,28 @@ package tubespbo;
  */
 public class Mahasiswa extends Orang {
     private long nim;
-    private TugasAkhir[] tugasakhir;
+    private TugasAkhir tugasakhir;
     private int numOfTugasAkhir;
     
     public Mahasiswa(String nama, String jeniskelamin, long nim){
         super(nama,jeniskelamin);
         this.nim=nim;
-        tugasakhir = new TugasAkhir[1];
     }
     public void createTugasAkhir(TugasAkhir t){
-        if(numOfTugasAkhir<tugasakhir.length){
-            tugasakhir[numOfTugasAkhir]=t;
-            numOfTugasAkhir++;
-        }else System.out.println("error");
+        tugasakhir = t;
     }
     public TugasAkhir getTA(int i){
-        return tugasakhir[i];
+        return tugasakhir;
     }
     public void setNim(long nim) {
         this.nim = nim;
     }
     public long getNim() {
         return nim;
+    }
+    
+    public void removeTugas(){
+        tugasakhir=null;
     }
 
     /**

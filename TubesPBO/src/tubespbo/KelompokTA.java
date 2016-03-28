@@ -56,6 +56,15 @@ public class KelompokTA{
     public String getNamaKelompok() {
         return namaKelompok;
     }
+    public int getPosisiAnggota(long nim){
+        int posisi = 0;
+        for (int i=0; i<anggota.length;i++){
+            if(anggota[i].getNim()==nim){
+                posisi= i;
+            }
+        }
+        return posisi;
+    }
 
     public void setNamaKelompok(String namaKelompok) {
         this.namaKelompok = namaKelompok;

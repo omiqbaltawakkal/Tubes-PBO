@@ -32,6 +32,13 @@ public class TugasAkhir {
             i++;
         }
     }
+    public void removePembimbing(long nip){
+        for (int i=0; i<1;i++){
+            if (getDosenPembimbing(i).getNip() != nip){
+                pembimbing[i] = null;
+            }
+        }
+    }
 
     public String getJudul() {
         return judul;
