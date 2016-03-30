@@ -651,6 +651,7 @@ public class Aplikasi {
                     break;
                 default:
                     System.out.println("Pilih 1-20 untuk Pilihan Menu atau 0 untuk Keluar");
+                    System.out.println("test");
                     //Runtime.getRuntime().exec("cls");
                     break;
             }
