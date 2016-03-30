@@ -367,7 +367,7 @@ public class Aplikasi {
                         System.out.print("Nama Mahasiswa: ");
                         nm = inputan.next();
                     } catch (InputMismatchException e) {
-                        System.out.println("Input Nama And, ini Kolom Nama !");
+                        System.out.println("Input Nama Anda, ini Kolom Nama !");
                     }
                     try {
                         System.out.print("NIM : ");
