@@ -650,7 +650,7 @@ public class Aplikasi {
                     viewTugasAkhir();
                     break;
                 default:
-                    System.out.println("Pilih 1-16 untuk Pilihan Menu atau 0 untuk Keluar");
+                    System.out.println("Pilih 1-20 untuk Pilihan Menu atau 0 untuk Keluar");
                     //Runtime.getRuntime().exec("cls");
                     break;
             }
