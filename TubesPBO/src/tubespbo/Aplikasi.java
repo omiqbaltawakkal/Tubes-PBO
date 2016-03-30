@@ -9,6 +9,7 @@ package tubespbo;
  *
  * @author user
  */
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,8 +24,8 @@ public class Aplikasi {
 
     private ArrayList<Dosen> daftarDosen = new ArrayList<Dosen>();
     private ArrayList<Mahasiswa> daftarMahasiswa = new ArrayList<Mahasiswa>();
-    private ArrayList<KelompokTA> daftarKelompok = new ArrayList<KelompokTA>();
-    private ArrayList<TugasAkhir> daftarTugasAkhir = new ArrayList<TugasAkhir>();
+    //private ArrayList<KelompokTA> daftarKelompok = new ArrayList<KelompokTA>();
+    //private ArrayList<TugasAkhir> daftarTugasAkhir = new ArrayList<TugasAkhir>();
 
     public void addMahasiswa(Mahasiswa m) {
         daftarMahasiswa.add(m);
@@ -38,6 +39,7 @@ public class Aplikasi {
         Mahasiswa satu = null;
         FileInputStream fis = new FileInputStream("Data Mahasiswa.dat");
         ObjectInputStream ois = new ObjectInputStream(fis);
+        ArrayList<Mahasiswa> tempmhs = (ArrayList<Mahasiswa>) ois.readObject();
         while (ois.readObject() != null) {
             for (int i = 0; i < daftarMahasiswa.size(); i++) {
                 if (daftarMahasiswa.get(i).getNim() == nim) {
@@ -51,6 +53,8 @@ public class Aplikasi {
     public void deleteMahasiswa(long nim) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.dat");
         ObjectInputStream ois = new ObjectInputStream(fis);
+        ArrayList<Mahasiswa> tempmhs = (ArrayList<Mahasiswa>) ois.readObject();
+        File data = new File("Data Mahasiswa.dat");
         if (ois.readObject() == null) {
             System.out.println("Data tsb tidak ada !");
         } else {
@@ -62,12 +66,14 @@ public class Aplikasi {
                 }
             }
         }
+        data.delete();
     }
 
     public Dosen getDaftarDosen(long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
         Dosen dua = null;
         FileInputStream fis = new FileInputStream("Data Dosen.dat");
         ObjectInputStream ois = new ObjectInputStream(fis);
+        ArrayList<Dosen> tempdosen = (ArrayList<Dosen>) ois.readObject();
         while (ois.readObject() != null) {
             for (int i = 0; i < daftarDosen.size(); i++) {
                 if (daftarDosen.get(i).getNip() == nip) {
@@ -81,6 +87,7 @@ public class Aplikasi {
     public void deleteDosen(long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Dosen.dat");
         ObjectInputStream ois = new ObjectInputStream(fis);
+        ArrayList<Dosen> tempmhs = (ArrayList<Dosen>) ois.readObject();
         if (ois.readObject() == null) {
             System.out.println("Data tsb tidak ada !");
         } else {
@@ -94,73 +101,56 @@ public class Aplikasi {
         }
     }
 
-    public KelompokTA getKelompok(String topik) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public KelompokTA getKelompok(String nama, long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
         KelompokTA tiga = null;
-        FileInputStream fis = new FileInputStream("Data Kelompok TA.dat");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        while (ois.readObject() != null) {
-            for (int i = 0; i < daftarKelompok.size(); i++) {
-                if (daftarKelompok.get(i).getTopik().equals(topik)) {
-                    tiga = daftarKelompok.get(i);
-                }
+        for (int i = 0; i < daftarDosen.size(); i++) {
+            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok() == nama) {
+                tiga = daftarDosen.get(i).getKelompokByIndeks(i);
             }
         }
         return tiga;
     }
-
     public void deleteKelompok(String nama) throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("Data Kelompok TA.dat");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        if (ois.readObject() == null) {
-            System.out.println("Data tsb tidak ada !");
-        } else {
-            while (ois.readObject() != null) {
-                for (int i = 0; i < daftarKelompok.size(); i++) {
-                    if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
-                        daftarKelompok.remove(i);
-                    }
+        for (int i = 0; i < daftarDosen.size(); i++) {
+            for (int j = 0; j<daftarDosen.get(i).getJumlah();j++){
+                if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok() == nama) {
+                    daftarDosen.get(i).deleteKelompokTA(i);
                 }
             }
         }
-    }
-
-    public void setKelompok(KelompokTA kelompok) {
-        daftarKelompok.add(kelompok);
-    }
-
+    }    
+//    public void setKelompok(KelompokTA kelompok) {
+//        daftarKelompok.add(kelompok);
+//    }
+//
     public TugasAkhir getTugas(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         TugasAkhir empat = null;
-        FileInputStream fis = new FileInputStream("Data Tugas Akhir.dat");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        while (ois.readObject() != null) {
-            for (int i = 0; i < daftarTugasAkhir.size(); i++) {
-                if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
-                    empat = daftarTugasAkhir.get(i);
+            for (int i = 0; i < daftarMahasiswa.size(); i++) {
+                if (daftarMahasiswa.get(i).getTugasAkhir().getJudul() == judul) {
+                    empat = daftarMahasiswa.get(i).getTugasAkhir();
                 }
             }
-        }
         return empat;
     }
-
-    public void setTugas(TugasAkhir tugas) {
-        daftarTugasAkhir.add(tugas);
-    }
-
+//
+//    public void setTugas(TugasAkhir tugas) {
+//        daftarTugasAkhir.add(tugas);
+//    }
+//
     public void deleteTugasAkhir(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("Data Tugas Akhir.dat");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        if (ois.readObject() == null) {
-            System.out.println("Data tsb tidak ada !");
-        } else {
-            while (ois.readObject() != null) {
-                for (int i = 0; i < daftarTugasAkhir.size(); i++) {
-                    if (daftarTugasAkhir.get(i).getJudul().equals(judul)) {
-                        daftarTugasAkhir.remove(i);
+//        FileInputStream fis = new FileInputStream("Data Tugas Akhir.dat");
+//        ObjectInputStream ois = new ObjectInputStream(fis);
+//        ArrayList<TugasAkhir> tempmhs = (ArrayList<TugasAkhir>) ois.readObject();
+//        if (ois.readObject() == null) {
+//            System.out.println("Data tsb tidak ada !");
+//        } else {
+//            while (ois.readObject() != null) {
+                for (int i = 0; i < daftarMahasiswa.size(); i++) {
+                    if (daftarMahasiswa.get(i).getTugasAkhir().getJudul().equals(judul)) {
+                        daftarMahasiswa.get(i).removeTugas();
                     }
                 }
             }
-        }
-    }
 
     public void menuMhsCreate(String nama, String jenis, long nim) throws FileNotFoundException, IOException {
         Mahasiswa m = new Mahasiswa(nama, jenis, nim);
@@ -194,41 +184,41 @@ public class Aplikasi {
 
     public void menuKelompokCreate(String nama, String topik, int num) throws FileNotFoundException, IOException {
         KelompokTA kl = new KelompokTA(nama, topik, num);
-        setKelompok(kl);
+        //setKelompok(kl);
         FileOutputStream fos = new FileOutputStream("Data Kelompok.dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(kl);
         oos.flush();
         System.out.println("Data Telah Disimpan");
     }
-
-    public void menuKelompokDelete(String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-        deleteTugasAkhir(nama);
-        System.out.println("Data Telah Dihapus");
-    }
-
+//
+//    public void menuKelompokDelete(String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        deleteTugasAkhir(nama);
+//        System.out.println("Data Telah Dihapus");
+//    }
+//
     public void menuTugasCreate(String judul, String kk) throws FileNotFoundException, IOException {
         TugasAkhir ta = new TugasAkhir(judul, kk);
-        setTugas(ta);
+        //setTugas(ta);
         FileOutputStream fos = new FileOutputStream("Data Tugas Akhir.dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(ta);
         oos.flush();
         System.out.println("Data Telah Disimpan");
     }
-
+//
     public void menuTugasDelete(String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
         deleteTugasAkhir(judul);
         System.out.println("Data Telah Dihapus");
     }
+//
+//    public void daftarMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        getKelompok(nama).addAnggota(getMahasiswa(nim));
+//    }
 
-    public void daftarMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getKelompok(nama).addAnggota(getMahasiswa(nim));
-    }
-
-    public void daftarKelompokDosen(String nama, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getDaftarDosen(nip).addKelompokTA(getKelompok(nama));
-    }
+//    public void daftarKelompokDosen(String nama, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        getDaftarDosen(nip).addKelompokTA(getKelompok(nama));
+//    }
 
     public void daftarDosenTugas(String judul, long nip, int posisi) throws IOException, FileNotFoundException, ClassNotFoundException {
         getTugas(judul).setPembimbing(getDaftarDosen(nip), posisi);
@@ -238,9 +228,9 @@ public class Aplikasi {
         getMahasiswa(nim).createTugasAkhir(getTugas(judul));
     }
 
-    public void removeMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getKelompok(nama).removeAnggota(getKelompok(nama).getPosisiAnggota(nim));
-    }
+//    public void removeMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        getKelompok(nama).removeAnggota(getKelompok(nama).getPosisiAnggota(nim));
+//    }
 
     public void removeKelompokDosen(long nip, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
         getDaftarDosen(nip).deleteKelompokTA(getDaftarDosen(nip).getPosisiKelompok(nama));
@@ -253,7 +243,6 @@ public class Aplikasi {
     public void removeTugasMhs(long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
         getMahasiswa(nim).removeTugas();
     }
-
     public void viewMhs() throws IOException, FileNotFoundException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream("Data Mahasiswa.dat");
         ObjectInputStream ois = new ObjectInputStream(fis);
@@ -287,43 +276,42 @@ public class Aplikasi {
         }
     }
 
-    public void viewKelompok() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("Data Kelompok TA.dat");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        while (ois.readObject() != null) {
-            System.out.println("Data Kelompok TA");
-            for (int i = 0; i < daftarKelompok.size(); i++) {
-                System.out.println("Nama : " + daftarKelompok.get(i).getNamaKelompok());
-                System.out.println("Topik Tugas : " + daftarKelompok.get(i).getTopik());
-                System.out.println("Anggota Kelompok : ");
-                for (int j = 0; j < daftarKelompok.get(i).getNumAnggota(); j++) {
-                    System.out.println("Nama : " + daftarKelompok.get(i).getAnggotaByIndeks(j).getNama());
-                    System.out.println("NIM : " + daftarKelompok.get(i).getAnggotaByIndeks(j).getNim());
-                    System.out.println();
-                }
-                System.out.println();
-            }
-        }
-    }
-
-    public void viewTugasAkhir() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("Data Tugas Akhir.dat");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        while (ois.readObject() != null) {
-            System.out.println("Data Tuga Akhir");
-            for (int i = 0; i < daftarTugasAkhir.size(); i++) {
-                System.out.println("Judul : " + daftarTugasAkhir.get(i).getJudul());
-                System.out.println("Jenis KK : " + daftarTugasAkhir.get(i).getKK());
-                System.out.println("Dosen Pembimbing : ");
-                for (int j = 0; j < 2; j++) {
-                    System.out.println("Nama : "+daftarTugasAkhir.get(i).getDosenPembimbing(j).getNama());
-                    System.out.println("NIP  : "+daftarTugasAkhir.get(i).getDosenPembimbing(j).getNip());
-                    System.out.println();
-                }
-            }
-        }
-    }
-
+//    public void viewKelompok() throws FileNotFoundException, IOException, ClassNotFoundException {
+//        FileInputStream fis = new FileInputStream("Data Kelompok TA.dat");
+//        ObjectInputStream ois = new ObjectInputStream(fis);
+//        while (ois.readObject() != null) {
+//            System.out.println("Data Kelompok TA");
+//            for (int i = 0; i < daftarKelompok.size(); i++) {
+//                System.out.println("Nama : " + daftarKelompok.get(i).getNamaKelompok());
+//                System.out.println("Topik Tugas : " + daftarKelompok.get(i).getTopik());
+//                System.out.println("Anggota Kelompok : ");
+//                for (int j = 0; j < daftarKelompok.get(i).getNumAnggota(); j++) {
+//                    System.out.println("Nama : " + daftarKelompok.get(i).getAnggotaByIndeks(j).getNama());
+//                    System.out.println("NIM : " + daftarKelompok.get(i).getAnggotaByIndeks(j).getNim());
+//                    System.out.println();
+//                }
+//                System.out.println();
+//            }
+//        }
+//    }
+//
+//    public void viewTugasAkhir() throws FileNotFoundException, IOException, ClassNotFoundException {
+//        FileInputStream fis = new FileInputStream("Data Tugas Akhir.dat");
+//        ObjectInputStream ois = new ObjectInputStream(fis);
+//        while (ois.readObject() != null) {
+//            System.out.println("Data Tuga Akhir");
+//            for (int i = 0; i < daftarTugasAkhir.size(); i++) {
+//                System.out.println("Judul : " + daftarTugasAkhir.get(i).getJudul());
+//                System.out.println("Jenis KK : " + daftarTugasAkhir.get(i).getKK());
+//                System.out.println("Dosen Pembimbing : ");
+//                for (int j = 0; j < 2; j++) {
+//                    System.out.println("Nama : " + daftarTugasAkhir.get(i).getDosenPembimbing(j).getNama());
+//                    System.out.println("NIP  : " + daftarTugasAkhir.get(i).getDosenPembimbing(j).getNip());
+//                    System.out.println();
+//                }
+//            }
+//        }
+//    }
     public void mainMenu() throws IOException, FileNotFoundException, ClassNotFoundException {
         //Runtime.getRuntime().exec("cls");
         Scanner inputan = new Scanner(System.in);
@@ -439,7 +427,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Angka yang membatasi Jumlah Anggota Kelompok Anda");
                     }
-                    menuKelompokCreate(nk, tp, jml);
+                    //menuKelompokCreate(nk, tp, jml);
                     break;
                 case 4:
                     String jdl = null;
@@ -458,7 +446,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Hanya 'ICM', 'SIDE', 'TELE' !");
                     }
-                    menuTugasCreate(jdl, kk);
+                    //menuTugasCreate(jdl, kk);
                     break;
                 case 5:
                     long nim2 = 0;
@@ -488,7 +476,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Nama Kelompok yang ingin di hapus !");
                     }
-                    menuKelompokDelete(kel);
+                    //menuKelompokDelete(kel);
                     break;
                 case 8:
                     String jdl2 = null;
@@ -498,7 +486,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Input judul yang ingin di hapus !");
                     }
-                    menuTugasDelete(jdl2);
+                    //menuTugasDelete(jdl2);
                     break;
                 case 9:
                     long nim3 = 0;
@@ -515,7 +503,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Nama Kelompok!");
                     }
-                    daftarMhsKelompok(nim3, nama2);
+                    //daftarMhsKelompok(nim3, nama2);
                     break;
                 case 10:
                     long nip3 = 0;
@@ -532,7 +520,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.print("Nama Kelompok!");
                     }
-                    daftarKelompokDosen(nama3, nip3);
+                    //daftarKelompokDosen(nama3, nip3);
                     break;
                 case 11:
                     long nip4 = 0;
@@ -557,7 +545,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("1 atau 2");
                     }
-                    daftarDosenTugas(judul2, nip4, posisi);
+                    //daftarDosenTugas(judul2, nip4, posisi);
                     break;
                 case 12:
                     long nim5 = 0;
@@ -574,7 +562,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Judul Tugas Akhir Anda!");
                     }
-                    daftarTugasMhs(nim5, judul3);
+                    //daftarTugasMhs(nim5, judul3);
                     break;
                 case 13:
                     long nim6 = 0;
@@ -591,7 +579,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Nama Kelompok !");
                     }
-                    removeMhsKelompok(nim6, namakelompok);
+                    //removeMhsKelompok(nim6, namakelompok);
                     break;
                 case 14:
                     long nip5 = 0;
@@ -608,7 +596,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Nama Kelompok !");
                     }
-                    removeKelompokDosen(nip5, namakelompok2);
+                    //removeKelompokDosen(nip5, namakelompok2);
                     break;
                 case 15:
                     long nip6 = 0;
@@ -625,7 +613,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Judul Tugas Akhir !");
                     }
-                    removeDosenTugas(nip6, judul);
+                    //removeDosenTugas(nip6, judul);
                     break;
                 case 16:
                     long nim7 = 0;
@@ -635,7 +623,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("NIM Anda, berupa angka !");
                     }
-                    removeTugasMhs(nim7);
+                    //removeTugasMhs(nim7);
                     break;
                 case 17:
                     viewMhs();
@@ -644,17 +632,29 @@ public class Aplikasi {
                     viewDosen();
                     break;
                 case 19:
-                    viewKelompok();
+                    //viewKelompok();
                     break;
                 case 20:
-                    viewTugasAkhir();
+                    //viewTugasAkhir();
                     break;
                 default:
                     System.out.println("Pilih 1-20 untuk Pilihan Menu atau 0 untuk Keluar");
-                    System.out.println("test");
+                    //System.out.println("test");
                     //Runtime.getRuntime().exec("cls");
                     break;
             }
         } while (pilihan != 0);
+        FileOutputStream fos = new FileOutputStream("Data Mahasiswa.dat");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(fos);
+        FileOutputStream fos1 = new FileOutputStream("Data Dosen.dat");
+        ObjectOutputStream oos1 = new ObjectOutputStream(fos1);
+        oos.writeObject(fos1);
+        FileOutputStream fos2 = new FileOutputStream("Data Kelompok TA.dat");
+        ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+        oos.writeObject(fos2);
+        FileOutputStream fos3 = new FileOutputStream("Data Tugas Akhir.dat");
+        ObjectOutputStream oos3 = new ObjectOutputStream(fos3);
+        oos.writeObject(fos3);
     }
 }
