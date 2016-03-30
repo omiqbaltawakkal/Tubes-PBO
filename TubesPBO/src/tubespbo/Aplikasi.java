@@ -118,10 +118,6 @@ public class Aplikasi {
             }
         }
     }
-//    public void setKelompok(KelompokTA kelompok) {
-//        daftarKelompok.add(kelompok);
-//    }
-//
 
     public TugasAkhir getTugas(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         TugasAkhir empat = null;
@@ -132,11 +128,6 @@ public class Aplikasi {
         }
         return empat;
     }
-//
-//    public void setTugas(TugasAkhir tugas) {
-//        daftarTugasAkhir.add(tugas);
-//    }
-//
 
     public void deleteTugasAkhir(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
@@ -178,43 +169,48 @@ public class Aplikasi {
 
     public void menuKelompokCreate(String nama, String topik, int num) throws FileNotFoundException, IOException {
         KelompokTA kl = new KelompokTA(nama, topik, num);
-        //setKelompok(kl);
         FileOutputStream fos = new FileOutputStream("Data Kelompok.dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(kl);
         oos.flush();
         System.out.println("Data Telah Disimpan");
     }
-//
-//    public void menuKelompokDelete(String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        deleteTugasAkhir(nama);
-//        System.out.println("Data Telah Dihapus");
-//    }
-//
+
+    public void menuKelompokDelete(String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
+        deleteTugasAkhir(nama);
+        System.out.println("Data Telah Dihapus");
+    }
 
     public void menuTugasCreate(String judul, String kk) throws FileNotFoundException, IOException {
         TugasAkhir ta = new TugasAkhir(judul, kk);
-        //setTugas(ta);
         FileOutputStream fos = new FileOutputStream("Data Tugas Akhir.dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(ta);
         oos.flush();
         System.out.println("Data Telah Disimpan");
     }
-//
 
     public void menuTugasDelete(String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
         deleteTugasAkhir(judul);
         System.out.println("Data Telah Dihapus");
     }
-//
-//    public void daftarMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        getKelompok(nama).addAnggota(getMahasiswa(nim));
-//    }
 
-//    public void daftarKelompokDosen(String nama, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        getDaftarDosen(nip).addKelompokTA(getKelompok(nama));
-//    }
+    public void daftarMhsKelompok(KelompokTA kelompok, long nim, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
+        for (int i = 0; i < daftarDosen.size(); i++) {
+            if (daftarDosen.get(i).getNip() == nip) {
+                daftarDosen.get(i).addKelompokTA(kelompok);
+            }
+        }
+    }
+
+    public void daftarKelompokDosen(String nama, String topik, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
+        getDaftarDosen(nip).addKelompokTA(getDaftarDosen(nip).getKelompokByTopik(nama));
+    }
+
+    public void daftarTugasMhs(TugasAkhir tugas, long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
+        getMahasiswa(nim).createTugasAkhir(tugas);
+    }
+
     public void daftarDosenTugas(String judul, long nip, int posisi) throws IOException, FileNotFoundException, ClassNotFoundException {
         getTugas(judul).setPembimbing(getDaftarDosen(nip), posisi);
     }
@@ -226,18 +222,17 @@ public class Aplikasi {
 //    public void removeMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
 //        daftarDosen.getKelompok(nama).removeAnggota(getKelompok(nama).getPosisiAnggota(nim));
 //    }
-    public void removeKelompokDosen(long nip, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getDaftarDosen(nip).deleteKelompokTA(getDaftarDosen(nip).getPosisiKelompok(nama));
-    }
-
-    public void removeDosenTugas(long nip, String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getTugas(judul).removePembimbing(nip);
-    }
-
-    public void removeTugasMhs(long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getMahasiswa(nim).removeTugas();
-    }
-
+//    public void removeKelompokDosen(long nip, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        getDaftarDosen(nip).deleteKelompokTA(getDaftarDosen(nip).getPosisiKelompok(nama));
+//    }
+//
+//    public void removeDosenTugas(long nip, String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        getTugas(judul).removePembimbing(nip);
+//    }
+//
+//    public void removeTugasMhs(long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
+//        getMahasiswa(nim).removeTugas();
+//    }
     public void viewMhs() throws IOException, FileNotFoundException, ClassNotFoundException {
         System.out.println("Data Mahasiswa");
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
@@ -407,7 +402,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Angka yang membatasi Jumlah Anggota Kelompok Anda");
                     }
-                    //menuKelompokCreate(nk, tp, jml);
+                    menuKelompokCreate(nk, tp, jml);
                     break;
                 case 4:
                     String jdl = null;
@@ -426,7 +421,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Hanya 'ICM', 'SIDE', 'TELE' !");
                     }
-                    //menuTugasCreate(jdl, kk);
+                    menuTugasCreate(jdl, kk);
                     break;
                 case 5:
                     long nim2 = 0;
@@ -448,26 +443,26 @@ public class Aplikasi {
                     }
                     menuDosenDelete(nip2);
                     break;
-//                case 7:
-//                    String kel = null;
-//                    try {
-//                        System.out.print("Nama Kelompok : ");
-//                        kel = inputan.next();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("Nama Kelompok yang ingin di hapus !");
-//                    }
-//                    //menuKelompokDelete(kel);
-//                    break;
-//                case 8:
-//                    String jdl2 = null;
-//                    try {
-//                        System.out.print("Judul Tugas Akhir : ");
-//                        jdl2 = inputan.next();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("Input judul yang ingin di hapus !");
-//                    }
-//                    //menuTugasDelete(jdl2);
-//                    break;
+                case 7:
+                    String kel = null;
+                    try {
+                        System.out.print("Nama Kelompok : ");
+                        kel = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Nama Kelompok yang ingin di hapus !");
+                    }
+                    menuKelompokDelete(kel);
+                    break;
+                case 8:
+                    String jdl2 = null;
+                    try {
+                        System.out.print("Judul Tugas Akhir : ");
+                        jdl2 = inputan.next();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input judul yang ingin di hapus !");
+                    }
+                    menuTugasDelete(jdl2);
+                    break;
 //                case 9:
 //                    long nim3 = 0;
 //                    String nama2 = null;
