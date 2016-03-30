@@ -21,7 +21,7 @@ public class Mahasiswa extends Orang {
     public void createTugasAkhir(TugasAkhir t){
         tugasakhir = t;
     }
-    public TugasAkhir getTA(int i){
+    public TugasAkhir getTugasAkhir(){
         return tugasakhir;
     }
     public void setNim(long nim) {

@@ -5,12 +5,14 @@
  */
 package tubespbo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
 
-public class TugasAkhir {
+public class TugasAkhir implements Serializable{
     private Dosen[] pembimbing;
     private String judul;
     private String KK;
@@ -57,7 +59,7 @@ public class TugasAkhir {
     public void setPosisi(int posisi){
         this.posisi=posisi;
     }
-    public String KK(){
+    public String getKK(){
         return KK;
     }
     public int getPosisi(){

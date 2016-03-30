@@ -5,16 +5,18 @@
  */
 package tubespbo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author user
  */
-public class Dosen extends Orang {
+public class Dosen extends Orang implements Serializable{
 
     private long nip;
     private String kodedosen;
     private KelompokTA[] topikTA;
-    int i = 0;
+    int jumlah = 0;
 
     public Dosen(String nama, String JenisKelamin, long nip, String kodedosen) {
         super(nama, JenisKelamin);
@@ -39,10 +41,15 @@ public class Dosen extends Orang {
         return kodedosen;
     }
 
+    public int getJumlah() {
+        return jumlah;
+    }
+    
+    
     public void addKelompokTA(KelompokTA kel) {
         if (topikTA.length < 5) {
-            topikTA[i] = kel;
-            i++;
+            topikTA[jumlah] = kel;
+            jumlah++;
         } else {
             System.out.println("Penuh");
         }
