@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @author user
  */
 public class Dosen extends Orang implements Serializable{
-
     private long nip;
     private String kodedosen;
     private KelompokTA[] topikTA;
