@@ -102,7 +102,7 @@ public class Aplikasi {
     public KelompokTA getKelompok(String nama, long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
         KelompokTA tiga = null;
         for (int i = 0; i < daftarDosen.size(); i++) {
-            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok() == nama) {
+            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(nama)) {
                 tiga = daftarDosen.get(i).getKelompokByIndeks(i);
             }
         }
@@ -112,7 +112,7 @@ public class Aplikasi {
     public void deleteKelompok(String nama) throws FileNotFoundException, IOException, ClassNotFoundException {
         for (int i = 0; i < daftarDosen.size(); i++) {
             for (int j = 0; j < daftarDosen.get(i).getJumlah(); j++) {
-                if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok() == nama) {
+                if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(nama)) {
                     daftarDosen.get(i).deleteKelompokTA(i);
                 }
             }
@@ -122,7 +122,7 @@ public class Aplikasi {
     public TugasAkhir getTugas(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         TugasAkhir empat = null;
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
-            if (daftarMahasiswa.get(i).getTugasAkhir().getJudul() == judul) {
+            if (daftarMahasiswa.get(i).getTugasAkhir().getJudul().equals(judul)) {
                 empat = daftarMahasiswa.get(i).getTugasAkhir();
             }
         }
@@ -219,20 +219,6 @@ public class Aplikasi {
         getMahasiswa(nim).createTugasAkhir(getTugas(judul));
     }
 
-//    public void removeMhsKelompok(long nim, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        daftarDosen.getKelompok(nama).removeAnggota(getKelompok(nama).getPosisiAnggota(nim));
-//    }
-//    public void removeKelompokDosen(long nip, String nama) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        getDaftarDosen(nip).deleteKelompokTA(getDaftarDosen(nip).getPosisiKelompok(nama));
-//    }
-//
-//    public void removeDosenTugas(long nip, String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        getTugas(judul).removePembimbing(nip);
-//    }
-//
-//    public void removeTugasMhs(long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
-//        getMahasiswa(nim).removeTugas();
-//    }
     public void viewMhs() throws IOException, FileNotFoundException, ClassNotFoundException {
         System.out.println("Data Mahasiswa");
         for (int i = 0; i < daftarMahasiswa.size(); i++) {
@@ -288,7 +274,6 @@ public class Aplikasi {
     }
 
     public void mainMenu() throws IOException, FileNotFoundException, ClassNotFoundException {
-        //Runtime.getRuntime().exec("cls");
         Scanner inputan = new Scanner(System.in);
         int pilihan;
         do {
