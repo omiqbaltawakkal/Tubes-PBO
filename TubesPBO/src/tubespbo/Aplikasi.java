@@ -39,7 +39,7 @@ public class Aplikasi {
         ObjectInputStream ois = new ObjectInputStream(fis);
         ArrayList<Mahasiswa> tempmhs = (ArrayList<Mahasiswa>) ois.readObject();
         while (ois.readObject() != null) {
-            for (int i = 0; i < daftarMahasiswa.size(); i++) {
+            for (int i = 0; i < tempmhs.size(); i++) {
                 if (daftarMahasiswa.get(i).getNim() == nim) {
                     satu = daftarMahasiswa.get(i);
                 }
@@ -57,7 +57,7 @@ public class Aplikasi {
             System.out.println("Data tsb tidak ada !");
         } else {
             while (ois.readObject() != null) {
-                for (int i = 0; i < daftarMahasiswa.size(); i++) {
+                for (int i = 0; i < tempmhs.size(); i++) {
                     if (daftarMahasiswa.get(i).getNim() == nim) {
                         daftarMahasiswa.remove(i);
                     }
@@ -73,7 +73,7 @@ public class Aplikasi {
         ObjectInputStream ois = new ObjectInputStream(fis);
         ArrayList<Dosen> tempdosen = (ArrayList<Dosen>) ois.readObject();
         while (ois.readObject() != null) {
-            for (int i = 0; i < daftarDosen.size(); i++) {
+            for (int i = 0; i < tempdosen.size(); i++) {
                 if (daftarDosen.get(i).getNip() == nip) {
                     dua = daftarDosen.get(i);
                 }
@@ -90,7 +90,7 @@ public class Aplikasi {
             System.out.println("Data tsb tidak ada !");
         } else {
             while (ois.readObject() != null) {
-                for (int j = 0; j < daftarDosen.size(); j++) {
+                for (int j = 0; j < tempdosen.size(); j++) {
                     if (daftarDosen.get(j).getNip() == nip) {
                         daftarDosen.remove(j);
                     }
