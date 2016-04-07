@@ -197,13 +197,13 @@ public class Aplikasi {
 
     public void daftarMhsKelompok(KelompokTA kelompok, long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
         for (int i = 0; i < daftarDosen.size(); i++) {
-            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(kelompok.getNamaKelompok())){
+            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(kelompok.getNamaKelompok())) {
                 daftarDosen.get(i).addKelompokTA(kelompok);
             }
         }
     }
 
-    public void daftarKelompokDosen(String nama,long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
+    public void daftarKelompokDosen(String nama, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
         getDaftarDosen(nip).addKelompokTA(getDaftarDosen(nip).getKelompokByTopik(nama));
     }
 
@@ -294,15 +294,10 @@ public class Aplikasi {
             System.out.println("11. Set Dosen Pembimbing Tugas Akhir");
             System.out.println("12. Daftar Tugas Akhir untuk Mahasiswa");
             System.out.println();
-//            System.out.println("13. Remove Mahasiswa dari Kelompok TA");
-//            System.out.println("14. Remove Dosen Pembimbing dari Kelompok TA");
-//            System.out.println("15. Remove Dosen Pembimbing dari Tugas Akhir");
-//            System.out.println("16. Remove Tugas Akhir dari Mahasiswa tertentu");
-//            System.out.println();
-            System.out.println("17. View Data Mahasiswa");
-            System.out.println("18. View Data Dosen");
-            System.out.println("19. View Data Kelompok TA");
-            System.out.println("20. View Data Tugas Akhir");
+            System.out.println("13. View Data Mahasiswa");
+            System.out.println("14. View Data Dosen");
+            System.out.println("15. View Data Kelompok TA");
+            System.out.println("16. View Data Tugas Akhir");
             System.out.println();
             System.out.print("Masukkan Pilihan Menu: ");
             pilihan = inputan.nextInt();
@@ -417,6 +412,11 @@ public class Aplikasi {
                         System.out.println("Input NIM yang ingin di hapus !");
                     }
                     menuMhsDelete(nim2);
+                    for (int i = 0; i < daftarDosen.size(); i++) {
+                        if (daftarDosen.get(i).getKelompokByIndeks(i).getAnggotaByIndeks(i).getNim() == nim2) {
+                            daftarDosen.get(i).getKelompokByIndeks(i).removeAnggota(i);
+                        }
+                    }
                     break;
                 case 6:
                     long nip2 = 0;
@@ -437,6 +437,11 @@ public class Aplikasi {
                         System.out.println("Nama Kelompok yang ingin di hapus !");
                     }
                     menuKelompokDelete(kel);
+                    for (int i = 0; i < daftarDosen.size(); i++) {
+                        if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(kel)) {
+                            daftarDosen.get(i).deleteKelompokTA(i);
+                        }
+                    }
                     break;
                 case 8:
                     String jdl2 = null;
@@ -447,6 +452,11 @@ public class Aplikasi {
                         System.out.println("Input judul yang ingin di hapus !");
                     }
                     menuTugasDelete(jdl2);
+                    for (int i = 0; i < daftarMahasiswa.size(); i++) {
+                        if (daftarMahasiswa.get(i).getTugasAkhir().getJudul().equals(jdl2)) {
+                            daftarMahasiswa.get(i).removeTugas();
+                        }
+                    }
                     break;
                 case 9:
                     long nim3 = 0;
@@ -463,7 +473,7 @@ public class Aplikasi {
                     } catch (InputMismatchException e) {
                         System.out.println("Nama Kelompok!");
                     }
-                    daftarMhsKelompok(getKelompok(nama2),nim3);
+                    daftarMhsKelompok(getKelompok(nama2), nim3);
                     break;
                 case 10:
                     long nip3 = 0;
@@ -524,77 +534,16 @@ public class Aplikasi {
                     }
                     daftarTugasMhs(nim5, judul3);
                     break;
-//                case 13:
-//                    long nim6 = 0;
-//                    String namakelompok = null;
-//                    try {
-//                        System.out.println("NIM Anda : ");
-//                        nim6 = inputan.nextLong();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("NIM Anda, berupa angka !");
-//                    }
-//                    try {
-//                        System.out.println("Nama Kelompok TA Anda : ");
-//                        namakelompok = inputan.next();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("Nama Kelompok !");
-//                    }
-//                    //removeMhsKelompok(nim6, namakelompok);
-//                    break;
-//                case 14:
-//                    long nip5 = 0;
-//                    String namakelompok2 = null;
-//                    try {
-//                        System.out.println("Masukkan NIP Anda : ");
-//                        nip5 = inputan.nextLong();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("NIP Anda, berupa Angka !");
-//                    }
-//                    try {
-//                        System.out.println("Masukkan Nama Kelompok : ");
-//                        namakelompok2 = inputan.next();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("Nama Kelompok !");
-//                    }
-//                    //removeKelompokDosen(nip5, namakelompok2);
-//                    break;
-//                case 15:
-//                    long nip6 = 0;
-//                    String judul = null;
-//                    try {
-//                        System.out.println("Masukkan NIP Anda : ");
-//                        nip6 = inputan.nextLong();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("NIP Anda !");
-//                    }
-//                    try {
-//                        System.out.println("Masukkan Judul Tugas Akhir : ");
-//                        judul = inputan.next();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("Judul Tugas Akhir !");
-//                    }
-//                    //removeDosenTugas(nip6, judul);
-//                    break;
-//                case 16:
-//                    long nim7 = 0;
-//                    try {
-//                        System.out.println("Masukkan NIM Anda : ");
-//                        nim7 = inputan.nextLong();
-//                    } catch (InputMismatchException e) {
-//                        System.out.println("NIM Anda, berupa angka !");
-//                    }
-//                    //removeTugasMhs(nim7);
-//                    break;
-                case 17:
+                case 13:
                     viewMhs();
                     break;
-                case 18:
+                case 14:
                     viewDosen();
                     break;
-                case 19:
+                case 15:
                     viewKelompok();
                     break;
-                case 20:
+                case 16:
                     viewTugasAkhir();
                     break;
                 default:

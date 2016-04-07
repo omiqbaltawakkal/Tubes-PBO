@@ -35,9 +35,9 @@ public class TugasAkhir implements Serializable{
         }
     }
     public void removePembimbing(long nip){
-        for (int i=0; i<1;i++){
-            if (getDosenPembimbing(i).getNip() != nip){
-                pembimbing[i] = null;
+        for (int j=0; j<1;j++){
+            if (getDosenPembimbing(j).getNip() == nip){
+                pembimbing[j] = null;
             }
         }
     }
