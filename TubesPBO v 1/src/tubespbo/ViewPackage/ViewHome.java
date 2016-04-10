@@ -39,46 +39,61 @@ public class ViewHome extends javax.swing.JFrame {
 
         btnMhs.setText("Mahasiswa");
 
-        btnDsn.setText("jButton2");
+        btnDsn.setText("Dosen");
+        btnDsn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDsnActionPerformed(evt);
+            }
+        });
 
-        btnKlpk.setText("jButton3");
+        btnKlpk.setText("Kelompok TA");
+        btnKlpk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKlpkActionPerformed(evt);
+            }
+        });
 
-        btnTgs.setText("jButton4");
+        btnTgs.setText("Tugas Akhir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnKlpk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMhs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(btnMhs)
-                        .addGap(120, 120, 120)
-                        .addComponent(btnDsn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(btnKlpk)
-                        .addGap(77, 77, 77)
-                        .addComponent(btnTgs)))
-                .addContainerGap(269, Short.MAX_VALUE))
+                    .addComponent(btnDsn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTgs))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(162, 162, 162)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMhs)
-                    .addComponent(btnDsn))
+                    .addComponent(btnMhs, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDsn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnKlpk)
-                    .addComponent(btnTgs))
-                .addContainerGap(226, Short.MAX_VALUE))
+                    .addComponent(btnKlpk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTgs, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDsnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDsnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDsnActionPerformed
+
+    private void btnKlpkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKlpkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnKlpkActionPerformed
 
     public JButton getBtnMhs(){
         return btnMhs;
