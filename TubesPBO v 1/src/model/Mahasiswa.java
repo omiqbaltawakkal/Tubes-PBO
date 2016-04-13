@@ -10,38 +10,51 @@ package model;
  * @author user
  */
 public class Mahasiswa extends Orang {
+
     private long nim;
     private TugasAkhir tugasakhir;
     private int numOfTugasAkhir;
-    
-    public Mahasiswa(String nama, String jeniskelamin, long nim){
-        super(nama,jeniskelamin);
-        this.nim=nim;
+
+    public Mahasiswa(String nama, String jeniskelamin, long nim) {
+        super(nama, jeniskelamin);
+        this.nim = nim;
     }
-    public void createTugasAkhir(TugasAkhir t){
+
+    public void createTugasAkhir(TugasAkhir t) {
         tugasakhir = t;
     }
-    public TugasAkhir getTugasAkhir(){
+
+    public TugasAkhir getTugasAkhir() {
         return tugasakhir;
     }
+
     public void setNim(long nim) {
         this.nim = nim;
     }
+
     public long getNim() {
         return nim;
     }
-    
-    public void removeTugas(){
-        tugasakhir=null;
+
+    public TugasAkhir getTugasakhir() {
+        return tugasakhir;
+    }
+
+    public void setTugasakhir(TugasAkhir tugasakhir) {
+        this.tugasakhir = tugasakhir;
+    }
+
+    public void removeTugas() {
+        tugasakhir = null;
     }
 
     /**
      *
      */
     @Override
-    public void deskripsi(){
+    public void deskripsi() {
         System.out.println("Info Mahasiswa");
-        System.out.println("Nama : "+super.getNama());
-        System.out.println("Nim : "+getNim());
+        System.out.println("Nama : " + super.getNama());
+        System.out.println("Nim : " + getNim());
     }
 }

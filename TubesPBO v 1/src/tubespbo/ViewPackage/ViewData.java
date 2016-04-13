@@ -6,6 +6,7 @@
 package tubespbo.ViewPackage;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Dosen;
@@ -37,6 +38,8 @@ public class ViewData extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,63 +56,57 @@ public class ViewData extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setText("jLabel1");
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(319, 319, 319)
+                        .addComponent(btnBack)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(207, 207, 207)
+                .addGap(163, 163, 163)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void initTable(String[] column, JTable table1) {
-        DefaultTableModel tb = new DefaultTableModel(column, 0) {
 
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
-        };
-
-        table1.setModel(tb);
-
+    public JTable getjTable1() {
+        return jTable1;
     }
 
-    public void addItemtoTable(ArrayList<Object> array, JTable table) {
-        DefaultTableModel tb = (DefaultTableModel) table.getModel();
-        for (Object a : array) {
-            if (a instanceof Mahasiswa) {
-                Mahasiswa b = (Mahasiswa) a;
-                String[] data = {b.getNim()+"", b.getNama()};
-                tb.addRow(data);
-            }
-            if (a instanceof Dosen){
-                Dosen b = (Dosen) a;
-                String[] data = {b.getNip()+"", b.getNama(), b.getKodeDosen()};
-                tb.addRow(data);
-            }
-            if (a instanceof KelompokTA) {
-                KelompokTA b = (KelompokTA) a;
-                String[] data = {b.getNamaKelompok(), b.getTopik(),b.getAnggotaByIndeks(WIDTH).getNama()};
-                tb.addRow(data);
-            }
-            if (a instanceof TugasAkhir){
-                TugasAkhir b = (TugasAkhir) a;
-                String[] data = {b.getJudul(),b.getKK(),b.getDosenPembimbing(WIDTH).getNama()};
-                tb.addRow(data);
-            }
-        }
+    public JButton getBtnBack() {
+        return btnBack;
     }
 
     /**
@@ -149,6 +146,8 @@ public class ViewData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

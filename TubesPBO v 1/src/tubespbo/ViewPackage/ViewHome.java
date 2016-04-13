@@ -34,6 +34,8 @@ public class ViewHome extends javax.swing.JFrame {
         btnDsn = new javax.swing.JButton();
         btnKlpk = new javax.swing.JButton();
         btnTgs = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,25 +57,39 @@ public class ViewHome extends javax.swing.JFrame {
 
         btnTgs.setText("Tugas Akhir");
 
+        jLabel1.setText("Sistem Pengelolaan Data Tugas Akhir");
+
+        exit.setText("Exit");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnKlpk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMhs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDsn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTgs))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(248, 248, 248)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnKlpk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMhs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDsn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTgs)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(347, 347, 347)
+                        .addComponent(exit)))
                 .addContainerGap(279, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(96, 96, 96)
+                .addComponent(jLabel1)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMhs, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDsn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -81,7 +97,9 @@ public class ViewHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnKlpk, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTgs, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(exit)
+                .addGap(100, 100, 100))
         );
 
         pack();
@@ -95,7 +113,7 @@ public class ViewHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnKlpkActionPerformed
 
-    public JButton getBtnMhs(){
+    public JButton getBtnMhs() {
         return btnMhs;
     }
 
@@ -110,8 +128,11 @@ public class ViewHome extends javax.swing.JFrame {
     public JButton getBtnTgs() {
         return btnTgs;
     }
-    
-    
+
+    public JButton getExit() {
+        return exit;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -146,13 +167,14 @@ public class ViewHome extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDsn;
     private javax.swing.JButton btnKlpk;
     private javax.swing.JButton btnMhs;
     private javax.swing.JButton btnTgs;
+    private javax.swing.JButton exit;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

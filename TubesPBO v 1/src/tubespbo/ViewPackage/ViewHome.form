@@ -24,15 +24,27 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnKlpk" max="32767" attributes="0"/>
-                  <Component id="btnMhs" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnDsn" min="-2" pref="89" max="-2" attributes="0"/>
-                  <Component id="btnTgs" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnKlpk" max="32767" attributes="0"/>
+                          <Component id="btnMhs" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnDsn" min="-2" pref="89" max="-2" attributes="0"/>
+                          <Component id="btnTgs" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="347" max="-2" attributes="0"/>
+                      <Component id="exit" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="279" max="32767" attributes="0"/>
           </Group>
@@ -41,7 +53,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnMhs" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="btnDsn" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -51,7 +65,9 @@
                   <Component id="btnKlpk" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="btnTgs" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="186" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <Component id="exit" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,6 +97,16 @@
     <Component class="javax.swing.JButton" name="btnTgs">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tugas Akhir"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sistem Pengelolaan Data Tugas Akhir"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="exit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
     </Component>
   </SubComponents>
