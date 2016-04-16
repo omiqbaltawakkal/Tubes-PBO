@@ -60,7 +60,7 @@ public class PanelSubMenu3 extends javax.swing.JFrame {
 
         jLabel3.setText("Tugas Akhir");
 
-        home.setText("jButton1");
+        home.setText("Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

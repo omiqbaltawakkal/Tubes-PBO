@@ -22,7 +22,7 @@ import tubespbo.ViewPackage.*;
  */
 public class Controller implements ActionListener {
 
-    Aplikasi apl = new Aplikasi();
+    Aplikasi apl;
     ViewHome v1;
     ViewData v6;
     PanelSubMenu v2;
@@ -42,7 +42,8 @@ public class Controller implements ActionListener {
     inputKel v53;
     inputTugas v54;
 
-    public Controller() {
+    public Controller() throws SQLException {
+        this.apl = new Aplikasi();
         v1 = new ViewHome();
         v1.getBtnMhs().addActionListener(this);
         v1.getBtnDsn().addActionListener(this);
@@ -125,6 +126,9 @@ public class Controller implements ActionListener {
         v54 = new inputTugas();
         v54.getjButton1().addActionListener(this);
         v54.getBtnBack().addActionListener(this);
+        
+        v6 = new ViewData();
+        v6.getBtnBack().addActionListener(this);
 
         v1.setVisible(true);
 
@@ -161,9 +165,9 @@ public class Controller implements ActionListener {
         if (a.equals(v2.getBtnView())) {
             //v2.setVisible(false);
             try {
-
-                apl.viewMhs(v6);
                 v6.setVisible(true);
+                apl.viewMhs(v6);
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -189,9 +193,9 @@ public class Controller implements ActionListener {
         if (a.equals(v21.getBtnView())) {
             //v21.setVisible(false);
             try {
-
-                apl.viewMhs(v6);
                 v6.setVisible(true);
+                apl.viewDosen(v6);
+                
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -218,7 +222,7 @@ public class Controller implements ActionListener {
             //v22.setVisible(false);
             try {
 
-                apl.viewMhs(v6);
+                apl.viewKelompok(v6);
                 v6.setVisible(true);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -246,7 +250,7 @@ public class Controller implements ActionListener {
             //v22.setVisible(false);
             try {
 
-                apl.viewMhs(v6);
+                apl.viewTugasAkhir(v6);
                 v6.setVisible(true);
             } catch (Exception ex) {
                 ex.printStackTrace();

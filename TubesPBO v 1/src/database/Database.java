@@ -16,9 +16,9 @@ public class Database {
     private ResultSet rs;
     private Connection connect;
     
-    public void connect() throws ClassNotFoundException, SQLException{
-        Class.forName("org.gjt.mm.mysql.Driver");
-        connect = DriverManager.getConnection("jdbc::mysql://localhost/db_sisfota","iqbal","pass");
+    public void connect() throws SQLException{
+//        Class.forName("org.gjt.mm.mysql.Driver");
+        connect = DriverManager.getConnection("jdbc:mysql://localhost/db_sisfota","root","");
         statement = connect.createStatement();
     }
     public ResultSet getData(String sql) throws SQLException{

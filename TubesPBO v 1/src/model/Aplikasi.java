@@ -22,6 +22,8 @@ import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import tubespbo.ViewPackage.ViewData;
@@ -32,8 +34,9 @@ public class Aplikasi {
     private ArrayList<Mahasiswa> daftarMahasiswa = new ArrayList<Mahasiswa>();
     private Database data;
 
-    public Aplikasi() {
+    public Aplikasi() throws SQLException {
         data = new Database();
+        data.connect();
     }
 
     public void addMahasiswa(Mahasiswa m) {
@@ -47,7 +50,7 @@ public class Aplikasi {
     public void menuMhsCreate(String nama, String jenis, long nim) throws FileNotFoundException, IOException, SQLException {
         Mahasiswa m = new Mahasiswa(nama, jenis, nim);
         addMahasiswa(m);
-        String query = "insert into Mahasiswa values ('" + nama + "'," + nim + ",'" + jenis + "')";
+        String query = "insert into Mahasiswa values ('" + nama + "','" + nim + "','" + jenis + "')";
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
@@ -197,24 +200,32 @@ public class Aplikasi {
         getMahasiswa(nim).setTugasakhir(getTugas(judul));
     }
 
-    public void viewMhs(ViewData v) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
-        String[] datamhs = {"NIM", "Nama", "Jenis Kelamin", "Judul"};
-        DefaultTableModel tblMahasiswa = new DefaultTableModel(datamhs, 0);
-        ResultSet rs = data.getData("select * from Mahasiswa");
-        DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
-        v.getjTable1().setModel(tblMahasiswa);
-        while (rs.next()) {
-            tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis Kelamin"), rs.getString("Judul Tugas")});
+    public void viewMhs(ViewData v) {
+        try {
+            String[] datamhs = {"NIM", "Nama", "Jenis Kelamin", "Judul"};
+            DefaultTableModel tblMahasiswa = new DefaultTableModel(datamhs, 0);
+            v.getjTable1().setModel(tblMahasiswa);
+            ResultSet rs = data.getData("select * from Mahasiswa");
+            DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
+
+            while (rs.next()) {
+                System.out.println("tes1");
+                tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis"), "kosong"});
+            }
+            v.getjTable1().setModel(tb);
+        } catch (SQLException ex) {
+            System.out.println("gggggggggggggggggggg");
         }
-        v.getjTable1().setModel(tb);
     }
 
     public void viewDosen(ViewData v) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
         String[] datadosen = {"NIP", "Nama", "Jenis Kelamin", "Kode Dosen"};
         DefaultTableModel tblDosen = new DefaultTableModel(datadosen, 0);
+        v.getjTable1().setModel(tblDosen);
         ResultSet rs = data.getData("select * from Dosen");
         DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
-        v.getjTable1().setModel(tblDosen);
+        v.getjTable1().removeAll();
+
         while (rs.next()) {
             tb.addRow(new String[]{rs.getString("NIP"), rs.getString("Nama"), rs.getString("Jenis Kelamin"), rs.getString("Kode Dosen")});
         }
@@ -224,9 +235,11 @@ public class Aplikasi {
     public void viewKelompok(ViewData v) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         String[] datakelompok = {"Nama Kelompok", "Nama Anggota", "Jenis Kelamin"};
         DefaultTableModel tblKelompok = new DefaultTableModel(datakelompok, 0);
-        ResultSet rs = data.getData("select * from Kelompok");
-        DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
         v.getjTable1().setModel(tblKelompok);
+        ResultSet rs = data.getData("select * from KelompokTA");
+        DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
+        v.getjTable1().removeAll();
+
         while (rs.next()) {
             tb.addRow(new String[]{rs.getString("Nama Kelompok"), rs.getString("Nama Anggota"), rs.getString("Jenis Kelamin")});
         }
@@ -236,9 +249,11 @@ public class Aplikasi {
     public void viewTugasAkhir(ViewData v) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         String[] datatugas = {"Judul", "Topik", "Nama Mahasiswa"};
         DefaultTableModel tblTugas = new DefaultTableModel(datatugas, 0);
-        ResultSet rs = data.getData("select * from Tugas");
-        DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
         v.getjTable1().setModel(tblTugas);
+        ResultSet rs = data.getData("select * from TugasAkhir");
+        DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
+        v.getjTable1().removeAll();
+
         while (rs.next()) {
             tb.addRow(new String[]{rs.getString("Judul"), rs.getString("Topik"), rs.getString("Nama Mahasiswa")});
         }
