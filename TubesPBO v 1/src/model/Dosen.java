@@ -62,10 +62,10 @@ public class Dosen extends Orang implements Serializable{
         return topikTA[indeks];
     }
 
-    public KelompokTA getKelompokByTopik(String topik) {
+    public KelompokTA getKelompokByTopik(String nama) {
         int indeks = 0;
         for (int i = 0; i < topikTA.length; i++) {
-            if (topikTA[i].topik.equalsIgnoreCase(topik)) {
+            if (topikTA[i].getNamaKelompok().equalsIgnoreCase(nama)) {
                 indeks = i;
             }
         }

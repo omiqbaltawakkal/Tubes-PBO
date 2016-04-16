@@ -13,7 +13,6 @@ public class Mahasiswa extends Orang {
 
     private long nim;
     private TugasAkhir tugasakhir;
-    private int numOfTugasAkhir;
 
     public Mahasiswa(String nama, String jeniskelamin, long nim) {
         super(nama, jeniskelamin);

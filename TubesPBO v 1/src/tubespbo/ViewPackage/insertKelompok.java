@@ -71,7 +71,7 @@ public class insertKelompok extends javax.swing.JFrame {
 
         jLabel4.setText("NIP Dosen:");
 
-        tfNip.setText("jTextField4");
+        tfNip.setText("-NIP-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

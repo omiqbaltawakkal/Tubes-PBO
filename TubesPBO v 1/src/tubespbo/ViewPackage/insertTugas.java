@@ -59,7 +59,7 @@ public class insertTugas extends javax.swing.JFrame {
 
         jLabel2.setText("Topik : ");
 
-        tfNim.setText("jTextField3");
+        tfNim.setText("-NIM-");
         tfNim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNimActionPerformed(evt);

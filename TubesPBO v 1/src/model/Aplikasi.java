@@ -83,7 +83,7 @@ public class Aplikasi {
     public void menuDosenCreate(String nama, long nip, String jenis, String kode) throws FileNotFoundException, IOException, SQLException {
         Dosen d = new Dosen(nama, jenis, nip, kode);
         addDosen(d);
-        String query = "insert into Dosen values ('" + nama + "'," + nip + ",'" + jenis + "','" + kode + "')";
+        String query = "insert into Dosen values ('" + nama + "','" + jenis + "'," + nip + ",'" + kode + "')";
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
@@ -209,7 +209,6 @@ public class Aplikasi {
             DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
 
             while (rs.next()) {
-                System.out.println("tes1");
                 tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis"), "kosong"});
             }
             v.getjTable1().setModel(tb);

@@ -118,7 +118,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfNim">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
+        <Property name="text" type="java.lang.String" value="-NIM-"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNimActionPerformed"/>
