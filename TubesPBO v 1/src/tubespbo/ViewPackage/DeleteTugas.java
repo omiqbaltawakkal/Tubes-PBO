@@ -68,7 +68,7 @@ public class DeleteTugas extends javax.swing.JFrame {
 
         btnBack.setText("Back");
 
-        jLabel2.setText("Tugas");
+        jLabel2.setText("Delete Tugas Akhir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
