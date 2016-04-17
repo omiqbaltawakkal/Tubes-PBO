@@ -6,13 +6,22 @@
 package model;
 
 import controller.Controller;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author user
  */
 public class driver {
+
     public static void main(String[] args) {
-        Controller c = new Controller();
+
+        try {
+            Controller c = new Controller();
+        } catch (SQLException ex) {
+            Logger.getLogger(driver.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

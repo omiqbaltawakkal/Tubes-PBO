@@ -32,11 +32,15 @@ public class Aplikasi {
 
     private ArrayList<Dosen> daftarDosen = new ArrayList<Dosen>();
     private ArrayList<Mahasiswa> daftarMahasiswa = new ArrayList<Mahasiswa>();
+    private ArrayList<KelompokTA> daftarKelompok = new ArrayList<KelompokTA>();
+    private ArrayList<TugasAkhir> daftarTugas = new ArrayList<TugasAkhir>();
     private Database data;
 
     public Aplikasi() throws SQLException {
+
         data = new Database();
         data.connect();
+        load();
     }
 
     public void addMahasiswa(Mahasiswa m) {
@@ -47,10 +51,18 @@ public class Aplikasi {
         daftarDosen.add(d);
     }
 
+    public void addKelompok(KelompokTA k) {
+        daftarKelompok.add(k);
+    }
+
+    public void addTugas(TugasAkhir t) {
+        daftarTugas.add(t);
+    }
+
     public void menuMhsCreate(String nama, String jenis, long nim) throws FileNotFoundException, IOException, SQLException {
         Mahasiswa m = new Mahasiswa(nama, jenis, nim);
         addMahasiswa(m);
-        String query = "insert into Mahasiswa values ('" + nama + "','" + nim + "','" + jenis + "')";
+        String query = "insert into Mahasiswa(nama,nim,jenis) values ('" + nama + "','" + nim + "','" + jenis + "')";
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
@@ -64,12 +76,16 @@ public class Aplikasi {
 
     public Mahasiswa getMahasiswa(long nim) throws FileNotFoundException, IOException, ClassNotFoundException {
         Mahasiswa satu = null;
-        for (int i = 0; i < daftarDosen.size(); i++) {
+        for (int i = 0; i < daftarMahasiswa.size(); i++) {
             if (daftarMahasiswa.get(i).getNim() == nim) {
                 satu = daftarMahasiswa.get(i);
             }
         }
+        if (satu == null) {
+            System.out.println("list mhs kosong");
+        }
         return satu;
+
     }
 
     public void deleteMahasiswa(long nim) throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -113,91 +129,88 @@ public class Aplikasi {
         }
     }
 
-    public void menuKelompokCreate(String nama, String topik, int num, long nip) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public void menuKelompokCreate(String nama, String topik, int num, long nip) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         KelompokTA kl = new KelompokTA(nama, topik, num);
-        getDaftarDosen(nip);
-        String query = "insert into Kelompok values ('" + nama + "'," + topik + ",'" + num + "')";
+        addKelompok(kl);
+        String query = "insert into KelompokTA values ('" + nama + "'," + topik + ",'" + num + "','" + nip + "')";
+        data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
 
     public void menuKelompokDelete(String nama) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
-        deleteTugasAkhir(nama);
-        String query = "delete from Kelompok where nama=" + nama;
+        deleteKelompok(nama);
+        String query = "delete from KelompokTA where nama=" + nama;
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di hapus");
     }
 
     public KelompokTA getKelompok(String nama) throws FileNotFoundException, IOException, ClassNotFoundException {
         KelompokTA tiga = null;
-        for (int i = 0; i < daftarDosen.size(); i++) {
-            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(nama)) {
-                tiga = daftarDosen.get(i).getKelompokByIndeks(i);
+        for (int i = 0; i < daftarKelompok.size(); i++) {
+            if (daftarKelompok.get(i).getNamaKelompok().equals(nama)) {
+                tiga = daftarKelompok.get(i);
             }
         }
         return tiga;
     }
 
     public void deleteKelompok(String nama) throws FileNotFoundException, IOException, ClassNotFoundException {
-        for (int i = 0; i < daftarDosen.size(); i++) {
-            for (int j = 0; j < daftarDosen.get(i).getJumlah(); j++) {
-                if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(nama)) {
-                    daftarDosen.get(i).deleteKelompokTA(i);
-                }
-            }
+        for (int i = 0; i < daftarKelompok.size(); i++) {
+            if (daftarKelompok.get(i).getNamaKelompok().equals(nama));
         }
     }
 
     public void menuTugasCreate(String judul, String kk, long nim) throws FileNotFoundException, IOException, SQLException, ClassNotFoundException {
-        TugasAkhir ta = new TugasAkhir(judul, kk);
-        getMahasiswa(nim).setTugasakhir(ta);
-        String query = "insert into TugasAkhir values ('" + judul + "','" + kk + "')";
+        String query = "insert into TugasAkhir (judul, topik) values ('" + judul + "','" + kk + "')";
         data.query(query);
+        TugasAkhir ta = new TugasAkhir(judul, kk);
+        addTugas(ta);
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
 
     public void menuTugasDelete(String judul) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
         deleteTugasAkhir(judul);
-        String query = "delete from Tugas where judul= " + judul;
+        String query = "delete from Tugasakhir where judul= " + judul;
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di hapus");
     }
 
     public TugasAkhir getTugas(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
         TugasAkhir empat = null;
-        for (int i = 0; i < daftarMahasiswa.size(); i++) {
-            if (daftarMahasiswa.get(i).getTugasAkhir().getJudul().equals(judul)) {
-                empat = daftarMahasiswa.get(i).getTugasAkhir();
+        for (int i = 0; i < daftarTugas.size(); i++) {
+            if (daftarTugas.get(i).getJudul().equals(judul)) {
+                empat = daftarTugas.get(i);
             }
         }
         return empat;
     }
 
     public void deleteTugasAkhir(String judul) throws FileNotFoundException, IOException, ClassNotFoundException {
-        for (int i = 0; i < daftarMahasiswa.size(); i++) {
-            if (daftarMahasiswa.get(i).getTugasAkhir().getJudul().equals(judul)) {
-                daftarMahasiswa.get(i).removeTugas();
+        for (int i = 0; i < daftarTugas.size(); i++) {
+            if (daftarTugas.get(i).getJudul().equals(judul)) {
+                daftarTugas.remove(i);
             }
         }
     }
 
     public void daftarKelompokDosen(String nama, long nip) throws IOException, FileNotFoundException, ClassNotFoundException {
-        getDaftarDosen(nip).addKelompokTA(getDaftarDosen(nip).getKelompokByTopik(nama));
+        getDaftarDosen(nip).addKelompokTA(getKelompok(nama));
+        JOptionPane.showMessageDialog(null, "Data berhasil di insert");
     }
 
     public void daftarMhsKelompok(String nama, long nim) throws IOException, FileNotFoundException, ClassNotFoundException {
-        for (int i = 0; i < daftarDosen.size(); i++) {
-            if (daftarDosen.get(i).getKelompokByIndeks(i).getNamaKelompok().equals(nama)) {
-                daftarDosen.get(i).getKelompokByIndeks(i).addAnggota(getMahasiswa(nim));
-            }
-        }
+        getKelompok(nama).addAnggota(getMahasiswa(nim));
+        JOptionPane.showMessageDialog(null, "Data berhasil di insert");
     }
 
     public void daftarDosenTugas(String judul, long nip, int posisi) throws IOException, FileNotFoundException, ClassNotFoundException {
         getTugas(judul).setPembimbing(getDaftarDosen(nip), posisi);
+        JOptionPane.showMessageDialog(null, "Data berhasil di insert");
     }
 
     public void daftarTugasMhs(long nim, String judul) throws IOException, FileNotFoundException, ClassNotFoundException {
         getMahasiswa(nim).setTugasakhir(getTugas(judul));
+        JOptionPane.showMessageDialog(null, "Data berhasil di insert");
     }
 
     public void viewMhs(ViewData v) {
@@ -209,7 +222,7 @@ public class Aplikasi {
             DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
 
             while (rs.next()) {
-                tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis"), "kosong"});
+                tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis"), rs.getString("Judul")});
             }
             v.getjTable1().setModel(tb);
         } catch (SQLException ex) {
@@ -223,8 +236,7 @@ public class Aplikasi {
         v.getjTable1().setModel(tblDosen);
         ResultSet rs = data.getData("select * from Dosen");
         DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
-        v.getjTable1().removeAll();
-
+//        v.getjTable1().;
         while (rs.next()) {
             tb.addRow(new String[]{rs.getString("NIP"), rs.getString("Nama"), rs.getString("Jenis Kelamin"), rs.getString("Kode Dosen")});
         }
@@ -232,7 +244,7 @@ public class Aplikasi {
     }
 
     public void viewKelompok(ViewData v) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-        String[] datakelompok = {"Nama Kelompok", "Nama Anggota", "Jenis Kelamin"};
+        String[] datakelompok = {"Nama Kelompok", "Nama Anggota", "Jenis Kelamin", "Nama Dosen Pembimbing"};
         DefaultTableModel tblKelompok = new DefaultTableModel(datakelompok, 0);
         v.getjTable1().setModel(tblKelompok);
         ResultSet rs = data.getData("select * from KelompokTA");
@@ -240,23 +252,61 @@ public class Aplikasi {
         v.getjTable1().removeAll();
 
         while (rs.next()) {
-            tb.addRow(new String[]{rs.getString("Nama Kelompok"), rs.getString("Nama Anggota"), rs.getString("Jenis Kelamin")});
+            tb.addRow(new String[]{rs.getString("Nama Kelompok"), rs.getString("Nama Anggota"), rs.getString("Jenis Kelamin"), rs.getString("Nama Dosen Pembimbing")});
         }
         v.getjTable1().setModel(tb);
     }
 
     public void viewTugasAkhir(ViewData v) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-        String[] datatugas = {"Judul", "Topik", "Nama Mahasiswa"};
+        String[] datatugas = {"Judul", "Topik"};
         DefaultTableModel tblTugas = new DefaultTableModel(datatugas, 0);
         v.getjTable1().setModel(tblTugas);
         ResultSet rs = data.getData("select * from TugasAkhir");
+
         DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
         v.getjTable1().removeAll();
 
         while (rs.next()) {
-            tb.addRow(new String[]{rs.getString("Judul"), rs.getString("Topik"), rs.getString("Nama Mahasiswa")});
+            tb.addRow(new String[]{rs.getString("Judul"), rs.getString("Topik")});
+            ResultSet rs1 = data.getData("Select nama from Mahasiswa where judul = '" +rs.getString("Judul"));
         }
         v.getjTable1().setModel(tb);
+    }
+
+    public void load() {
+        ResultSet rs = null;
+        try {
+            rs = data.getData("select * from Dosen");
+            while (rs.next()) {
+                daftarDosen.add(new Dosen(rs.getString("Nama"), rs.getString("Jenis Kelamin"), rs.getLong("NIP"), rs.getString("Kode Dosen")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = data.getData("select * from Mahasiswa");
+            while (rs.next()) {
+                daftarMahasiswa.add(new Mahasiswa(rs.getString("Nama"), rs.getString("Jenis"), rs.getLong("NIM")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = data.getData("select * from KelompokTA");
+            while (rs.next()) {
+                daftarKelompok.add(new KelompokTA(rs.getString("Nama Kelompok"), rs.getString("Nama Anggota"), rs.getInt("Jumlah")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = data.getData("select * from TugasAkhir");
+            while (rs.next()) {
+                daftarTugas.add(new TugasAkhir(rs.getString("Judul"), rs.getString("Topik")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 //    public void mainMenu() throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {

@@ -26,7 +26,7 @@ public class TugasAkhir implements Serializable{
         pembimbing = new Dosen[2];
     }
     public void setPembimbing(Dosen baru, int posisi){
-        if(this.pembimbing[2] != null){
+        if(this.pembimbing[i] != null){
             System.out.println("Pembimbing dari TA ini sudah full");
         }
         else{
