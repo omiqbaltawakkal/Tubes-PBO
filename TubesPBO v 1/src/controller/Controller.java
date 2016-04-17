@@ -318,7 +318,7 @@ public class Controller implements ActionListener {
         }
         if (a.equals(v44.getjButton1())) {
             try {
-                apl.menuTugasDelete(v44.getTfNim().getText());
+                apl.menuTugasDelete(Long.parseLong(v44.getTfNim().getText()));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -132,7 +132,7 @@ public class Aplikasi {
     public void menuKelompokCreate(String nama, String topik, int num, long nip) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
         KelompokTA kl = new KelompokTA(nama, topik, num);
         addKelompok(kl);
-        String query = "insert into KelompokTA values ('" + nama + "'," + topik + ",'" + num + "','" + nip + "')";
+        String query = "insert into KelompokTA values ('" + nama + "','" + topik + "','" + num + "','" + nip + "')";
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
@@ -168,9 +168,9 @@ public class Aplikasi {
         JOptionPane.showMessageDialog(null, "Data berhasil di Input");
     }
 
-    public void menuTugasDelete(String judul) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
-        deleteTugasAkhir(judul);
-        String query = "delete from Tugasakhir where judul= " + judul;
+    public void menuTugasDelete(long nim) throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
+        deleteTugasAkhir(getMahasiswa(nim).getTugasAkhir().getJudul());
+        String query = "delete from Tugasakhir where judul= " + getMahasiswa(nim).getTugasAkhir().getJudul();
         data.query(query);
         JOptionPane.showMessageDialog(null, "Data berhasil di hapus");
     }
@@ -215,14 +215,14 @@ public class Aplikasi {
 
     public void viewMhs(ViewData v) {
         try {
-            String[] datamhs = {"NIM", "Nama", "Jenis Kelamin", "Judul"};
+            String[] datamhs = {"NIM", "Nama", "Jenis Kelamin"};
             DefaultTableModel tblMahasiswa = new DefaultTableModel(datamhs, 0);
             v.getjTable1().setModel(tblMahasiswa);
             ResultSet rs = data.getData("select * from Mahasiswa");
             DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
 
             while (rs.next()) {
-                tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis"), rs.getString("Judul")});
+                tb.addRow(new String[]{rs.getString("NIM"), rs.getString("Nama"), rs.getString("Jenis")});
             }
             v.getjTable1().setModel(tb);
         } catch (SQLException ex) {
@@ -244,15 +244,14 @@ public class Aplikasi {
     }
 
     public void viewKelompok(ViewData v) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
-        String[] datakelompok = {"Nama Kelompok", "Nama Anggota", "Jenis Kelamin", "Nama Dosen Pembimbing"};
+        String[] datakelompok = {"Nama Kelompok", "Nama Anggota", "Jumlah Anggota"};
         DefaultTableModel tblKelompok = new DefaultTableModel(datakelompok, 0);
         v.getjTable1().setModel(tblKelompok);
         ResultSet rs = data.getData("select * from KelompokTA");
         DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
-        v.getjTable1().removeAll();
-
+        //v.getjTable1().removeAll();
         while (rs.next()) {
-            tb.addRow(new String[]{rs.getString("Nama Kelompok"), rs.getString("Nama Anggota"), rs.getString("Jenis Kelamin"), rs.getString("Nama Dosen Pembimbing")});
+            tb.addRow(new String[]{rs.getString("Nama Kelompok"), rs.getString("Topik"), rs.getString("Jumlah Anggota")});
         }
         v.getjTable1().setModel(tb);
     }
@@ -262,13 +261,11 @@ public class Aplikasi {
         DefaultTableModel tblTugas = new DefaultTableModel(datatugas, 0);
         v.getjTable1().setModel(tblTugas);
         ResultSet rs = data.getData("select * from TugasAkhir");
-
         DefaultTableModel tb = (DefaultTableModel) v.getjTable1().getModel();
-        v.getjTable1().removeAll();
-
+        //v.getjTable1().removeAll();
         while (rs.next()) {
             tb.addRow(new String[]{rs.getString("Judul"), rs.getString("Topik")});
-            ResultSet rs1 = data.getData("Select nama from Mahasiswa where judul = '" +rs.getString("Judul"));
+            //ResultSet rs1 = data.getData("Select nama from Mahasiswa where judul = '" +rs.getString("Judul"));
         }
         v.getjTable1().setModel(tb);
     }
@@ -294,7 +291,7 @@ public class Aplikasi {
         try {
             rs = data.getData("select * from KelompokTA");
             while (rs.next()) {
-                daftarKelompok.add(new KelompokTA(rs.getString("Nama Kelompok"), rs.getString("Nama Anggota"), rs.getInt("Jumlah")));
+                daftarKelompok.add(new KelompokTA(rs.getString("Nama Kelompok"), rs.getString("Topik"), rs.getInt("Jumlah anggota")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Aplikasi.class.getName()).log(Level.SEVERE, null, ex);
